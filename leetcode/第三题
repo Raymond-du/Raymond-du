@@ -1,0 +1,22 @@
+给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度。
+
+思路解析: 从头开始遍历字符串  新建一个指针指向字符串头部  循环判断后面是否有相同的字符串 在和 length比较长度...
+
+int lengthOflongestSubString(string s){
+
+	if (s.empty()){
+		return 0;
+	}
+	int length=1;
+	for (int i = 0, j = 0; i < s.size() && j < s.size();j++){
+		for (int k = i; k < j; k++){
+			if (s.at(j) == s.at(k)){
+				length = length >=(j - i) ? length : j - i;
+				i = k + 1;
+				break;
+			}
+		}
+		length = length >= (j - i+1) ? length : (j - i+1);
+	}
+	return length;
+}
