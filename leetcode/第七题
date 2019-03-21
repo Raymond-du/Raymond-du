@@ -1,0 +1,17 @@
+
+一个 32 位的有符号整数你需要将这个整数中每位上的数字进行反转如果反转溢出是返回0
+int reverse(int x) {
+	int temp = 0;
+	while(0!=x) {
+		if (temp > 0 && (temp == INT_MAX / 10 && x % 10 > INT_MAX % 10) || temp > INT_MAX / 10) {//正数判断越界
+			return 0;
+		}
+		if (temp < 0 && (temp == INT_MIN / 10 && x % 10 < INT_MIN % 10) || temp < INT_MIN / 10) {//负数判断越界
+			return 0;
+		}
+		temp *= 10;
+		temp += x % 10;
+		x /= 10;
+	}
+	return temp;
+}
