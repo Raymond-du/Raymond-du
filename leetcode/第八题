@@ -1,0 +1,51 @@
+实现一个 atoi 函数，使其能将字符串转换成整数。
+int stoi(string str,int posNum) {//纯数字字符串转int  需要判断是否越界	
+	int value = 0;
+	for (int i = 0; i < str.length(); i++) {
+		if (1 == posNum && (value>INT_MAX / 10 || (INT_MAX / 10 == value  && str[i] > '7'))) {
+			return INT_MAX;
+		}
+		if (-1 == posNum && (value >INT_MAX / 10 || (INT_MAX/ 10 == value  && str[i]>'8'))) {
+			return INT_MIN;
+		}
+		value *= 10;
+		value += (str[i] - '0');
+	}
+	return value*posNum;
+}
+
+bool isNum(char num) {//判断字符是否是数字
+	if (num <= '9'&&num >= '0' )
+		return true;
+	return false;
+}
+
+int myAtoi(string str) {	
+	string temp;
+	int posNum = 1;
+	int j = 0,i;
+	for (j; j < str.length(); j++) {//先把前面的空格去除  
+		if (' ' != str[j]) {
+			if ('+' == str[j]) {
+				posNum = 1;
+				j++;
+				break;
+			}
+			if ('-' == str[j]) {
+				posNum = -1;
+				j++;
+				break;
+			}
+			if (isNum(str[j])) {//如果首字符不是数字或者'-'返回0				
+				break;
+			}
+			return 0;
+		}
+	}
+	for (i = j; i < str.length();i++) {
+		if (!isNum(str[i])) {
+			break;
+		}
+	}
+	return stoi(str.substr(j, i-j), posNum);
+}
