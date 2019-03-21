@@ -1,9 +1,9 @@
 package Thinking;
 
 /**
- * Ò»°ã ¼ÙÈç»º³åÁ÷  BufferedInPutStream  ÔöÇ¿Ğ§ÂÊ
- *ÔÚ¶ÁÈ¡×Ö·ûÁ÷Ê±Óöµ½±àÂëÎÊÌâÊ±  Ê¹ÓÃ×ª»»Á÷
- *Reader= InPutStreamReader(new InputStream(""),"×Ö·û¼¯")×¢ÒâÕâÀï¿ÉÒÔ¼ÓÉÏ»º³åÁ÷
+ * ä¸€èˆ¬ å‡å¦‚ç¼“å†²æµ  BufferedInPutStream  å¢å¼ºæ•ˆç‡
+ *åœ¨è¯»å–å­—ç¬¦æµæ—¶é‡åˆ°ç¼–ç é—®é¢˜æ—¶  ä½¿ç”¨è½¬æ¢æµ
+ *Reader= InPutStreamReader(new InputStream(""),"å­—ç¬¦é›†")æ³¨æ„è¿™é‡Œå¯ä»¥åŠ ä¸Šç¼“å†²æµ
  */
 import java.io.File;
 import java.io.FileInputStream;
@@ -21,8 +21,8 @@ public class copyFileDemo {
 	InputStream is=null;
 	OutputStream os=null;
 	
-	if(!src.exists()) {//ÅĞ¶ÏÔ´ÎÄ¼şÊÇ·ñ´æÔÚ
-	    throw new FileNotFoundException("Ô´ÎÄ¼şÎ´ÕÒµ½");
+	if(!src.exists()) {//åˆ¤æ–­æºæ–‡ä»¶æ˜¯å¦å­˜åœ¨
+	    throw new FileNotFoundException("æºæ–‡ä»¶æœªæ‰¾åˆ°");
 	}
 	
 	try {  	    
@@ -30,7 +30,7 @@ public class copyFileDemo {
 	    os=new FileOutputStream(dest);
 	    byte[] data=new byte[1024];
 	    int len=0;
-	    while(-1!=(len=is.read(data))) {//Ñ­»·¶ÁÈ¡Ô´ÎÄ¼ş
+	    while(-1!=(len=is.read(data))) {//å¾ªç¯è¯»å–æºæ–‡ä»¶
 		os.write(data, 0, len);
 	    };
 	} catch (FileNotFoundException e) {
@@ -58,16 +58,16 @@ public class copyFileDemo {
     public static void copyFile(String srcPath,String destPath) throws IOException {
 	File src=new File(srcPath);
 	File dest=new File(destPath);
-	//´´½¨Ä¿±êÎÄ¼ş
+	//åˆ›å»ºç›®æ ‡æ–‡ä»¶
 	dest.getParentFile().mkdirs();
 	dest.createNewFile();
 	copyFile(src,dest);
     }
     
-    //ÊµÏÖÎÄ¼ş¼Ğ¼°ÎÄ¼şµÄÈ«¿½±´
+    //å®ç°æ–‡ä»¶å¤¹åŠæ–‡ä»¶çš„å…¨æ‹·è´
     public static void copyDir(File src,File dest) throws FileNotFoundException {
 	if(!src.exists()) {
-	    throw new FileNotFoundException("Î´ÕÒµ½Ô´ÎÄ¼ş"+src.getAbsolutePath());
+	    throw new FileNotFoundException("æœªæ‰¾åˆ°æºæ–‡ä»¶"+src.getAbsolutePath());
 	}
 	if(src.isFile()) {
 	    copyFile(src,new File(dest.getPath()+'/'+src.getName()));
