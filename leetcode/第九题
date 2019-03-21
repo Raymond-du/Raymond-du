@@ -1,0 +1,24 @@
+一个整数是否是回文数
+    bool isPalindrome(int x) {
+        if (x < 0) return false;
+        if (x == 0) return true;
+        
+        vector<int> ints;
+        
+        while(x!=0) {
+            ints.push_back(x%10);
+            x /= 10;
+        }
+        
+        int s = 0;
+        int e = ints.size() - 1;
+        while( s <= e) {
+            if (ints[s] != ints[e]) {
+                return false;
+            }
+            ++s;
+            --e;
+        }
+        
+        return true;
+    }
