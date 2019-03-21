@@ -1,0 +1,24 @@
+
+
+将一个给定字符串根据给定的行数，以从上往下、从左到右进行 Z 字形排列。
+输入字符串为 "LEETCODEISHIRING" 行数为 3 时  输出"LCIRETOESIIGEDHN"
+string convert(string s, int numRows) {
+	int groupSize = numRows * 2 - 2;
+	string temp;	
+	for (int i = 0; i<numRows; i++) {
+		bool b = true;
+		for (unsigned int j = i; j<s.length();) {
+			temp += s[j];
+			if (0 == i || i == numRows - 1) {				
+				j += groupSize;
+			} else if(true==b){
+				j += (groupSize - 2 * i);
+				b = false;
+			} else if(false==b){
+				j += 2 * i;
+				b = true;
+			}			
+		}
+	}
+	return temp;
+}
