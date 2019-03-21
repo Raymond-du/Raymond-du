@@ -3,9 +3,9 @@ package solar;
 import java.util.Iterator;
 
 public class LinkList implements java.lang.Iterable{
-    private Node first;//Á´±íµÄÍ·
-    private Node last;//Á´±íµÄÎ²
-    private int size;//Á´±í³¤¶È
+    private Node first;//é“¾è¡¨çš„å¤´
+    private Node last;//é“¾è¡¨çš„å°¾
+    private int size;//é“¾è¡¨é•¿åº¦
     
     public LinkList() {	
     }
@@ -18,27 +18,27 @@ public class LinkList implements java.lang.Iterable{
 	return size;
     }
     
-    public void add(Object obj) {//×·¼Óµ½Á´±íµÄÎ²²¿
+    public void add(Object obj) {//è¿½åŠ åˆ°é“¾è¡¨çš„å°¾éƒ¨
 	Node n=new Node(obj);
 	if(first==null) {
 	    first=n;
 	    last=n;	    
 	}else {
-	    last.setNext(n);//½«×îºóÒ»¸önodeµÄÖ¸ÏòĞÂµÄnode;
-	    n.setPre(last);//½«ĞÂµÄnodeµÄpreÖ¸Ïòlast;
+	    last.setNext(n);//å°†æœ€åä¸€ä¸ªnodeçš„æŒ‡å‘æ–°çš„node;
+	    n.setPre(last);//å°†æ–°çš„nodeçš„preæŒ‡å‘last;
 	    last=n;	    
 	}
 	size++;
     }
     
-    public void addFirst(Object obj) {//Ìí¼Ó¶ÔÏóµ½Í·²¿
+    public void addFirst(Object obj) {//æ·»åŠ å¯¹è±¡åˆ°å¤´éƒ¨
 	Node n=new Node(obj);
 	if(first==null) {
 	    first=n;
 	    last=n;
 	}else {
-	    n.setNext(first);//½«ĞÂµÄnodeµÄÏÂÒ»¸öÖ¸ÏòµÚÒ»¸ö;
-	    first.setPre(n);//½«µÚÒ»¸önodeµÄÉÏÒ»¸öÖ¸ÏòĞÂµÄnode;
+	    n.setNext(first);//å°†æ–°çš„nodeçš„ä¸‹ä¸€ä¸ªæŒ‡å‘ç¬¬ä¸€ä¸ª;
+	    first.setPre(n);//å°†ç¬¬ä¸€ä¸ªnodeçš„ä¸Šä¸€ä¸ªæŒ‡å‘æ–°çš„node;
 	    first=n;
 	}
 	size++;
@@ -47,13 +47,13 @@ public class LinkList implements java.lang.Iterable{
     private void rangeCheck(int index) {
 	if(index<0) {
 	    try {
-		throw new Exception("ÊäÈëÏÂ±ê²»ÕıÈ·");
+		throw new Exception("è¾“å…¥ä¸‹æ ‡ä¸æ­£ç¡®");
 	    } catch (Exception e) {
 		e.printStackTrace();
 	    }
 	}
 	if(index>=size) {
-	    throw new IndexOutOfBoundsException("ÄãÊäÈëµÄÏÂ±íÒÑ¾­Ô½½ç");
+	    throw new IndexOutOfBoundsException("ä½ è¾“å…¥çš„ä¸‹è¡¨å·²ç»è¶Šç•Œ");
 	}
     }
     
@@ -66,7 +66,7 @@ public class LinkList implements java.lang.Iterable{
 	this.add(obj);
     }
     
-    public Object remove() {//ÒÆ³ıÍ·½Úµã
+    public Object remove() {//ç§»é™¤å¤´èŠ‚ç‚¹
 	if(size>0) {
 	    Object temp=first;
 	    first.getNext().setPre(null);
@@ -76,7 +76,7 @@ public class LinkList implements java.lang.Iterable{
 	return null;	
     }
     
-    private Node getNode(int index) {//»ñÈ¡Ö¸¶¨½Úµã
+    private Node getNode(int index) {//è·å–æŒ‡å®šèŠ‚ç‚¹
 	rangeCheck(index);
 	Node temp=first;
 	while(true) {
@@ -89,19 +89,19 @@ public class LinkList implements java.lang.Iterable{
 	return temp;
     }
     
-    public Object remove(int index) {//ÒÆ³ıÖ¸¶¨¶ÔÏó
+    public Object remove(int index) {//ç§»é™¤æŒ‡å®šå¯¹è±¡
 	rangeCheck(index);
 	Node temp=getNode(index);
-	if(size==1) {//Èç¹ûÖ»ÓĞÒ»¸ö½ÚµãµÄÇé¿öÏÂ
+	if(size==1) {//å¦‚æœåªæœ‰ä¸€ä¸ªèŠ‚ç‚¹çš„æƒ…å†µä¸‹
 	    first=null;
 	    last=null;
 	    size--;
 	    return temp.getObj();
 	}
 	
-	if(temp.hasPre()) {//´æÔÚÇ°½Úµã
+	if(temp.hasPre()) {//å­˜åœ¨å‰èŠ‚ç‚¹
 	    temp.getPre().setNext(temp.getNext());	    
-	}else {//²»´æÔÚÇ°½Úµã
+	}else {//ä¸å­˜åœ¨å‰èŠ‚ç‚¹
 	    first=temp.getNext();
 	}
 	if(temp.hasNext()) {
@@ -118,8 +118,8 @@ public class LinkList implements java.lang.Iterable{
 
 	return new Iterator() {
 
-	    private int cur=0;//µ±Ç°¶ÔÏó
-	    private int lastRet=-1;//¸Õ¸Õ±éÀúÍêµÄ¶ÔÏó
+	    private int cur=0;//å½“å‰å¯¹è±¡
+	    private int lastRet=-1;//åˆšåˆšéå†å®Œçš„å¯¹è±¡
 	    @Override
 	    public boolean hasNext() {
 		return cur!=size;
@@ -143,7 +143,7 @@ public class LinkList implements java.lang.Iterable{
 	    public void remove() {
 		if(lastRet==-1) {
 		    try {
-			throw new Exception("¸ÃÊı¾İÒÑ±»É¾³ı");
+			throw new Exception("è¯¥æ•°æ®å·²è¢«åˆ é™¤");
 		    } catch (Exception e) {
 			e.printStackTrace();
 		    }
