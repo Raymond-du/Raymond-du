@@ -18,7 +18,7 @@ import java.util.Scanner;
 
 public class objectStream{
     public static void main(String[] args) {
-	//ÀûÓÃ´òÓ¡Á÷  Ğ´ÈëÎÄ¼şÖĞ
+	//åˆ©ç”¨æ‰“å°æµ  å†™å…¥æ–‡ä»¶ä¸­
 	/**PrintStream ps=null;
 	try {
 	    ps=new PrintStream(new BufferedOutputStream(
@@ -30,7 +30,7 @@ public class objectStream{
 	ps.close();
 	*/
 	
-	//ÕâÀïÓÃ´òÓ¡Á÷  ¶ÁÈ¡ÎÄ¼şÖĞµÄÊı¾İ
+	//è¿™é‡Œç”¨æ‰“å°æµ  è¯»å–æ–‡ä»¶ä¸­çš„æ•°æ®
 	/**InputStream is=null;
 	try {
 	    is=new BufferedInputStream(new FileInputStream(new File("C:\\Users\\26368\\Videos\\Captures\\wo.txt")));
@@ -43,7 +43,7 @@ public class objectStream{
 	s.close();
 	*/
 	
-	//½«¿ØÖÆÌ¨»ñµÃ×Ö·û  Ğ´µÀÎÄ¼şÖĞ
+	//å°†æ§åˆ¶å°è·å¾—å­—ç¬¦  å†™é“æ–‡ä»¶ä¸­
 	/**Scanner s=new Scanner(System.in);
 	PrintStream ps=null;
 	try {
@@ -56,8 +56,8 @@ public class objectStream{
 	s.close();
 	*/
 	
-	//ÀûÓÃÄ¬ÈÏº¯ÊıĞŞ¸ÄÊäÈëµÄÎ»ÖÃ
-	//PrintStream(OutputStream,bool)µÚ¶ş¸ö²ÎÊı  ÊÇ·ñ×Ô¶¯Ë¢ĞÂµ½ÎÄ¼ş
+	//åˆ©ç”¨é»˜è®¤å‡½æ•°ä¿®æ”¹è¾“å…¥çš„ä½ç½®
+	//PrintStream(OutputStream,bool)ç¬¬äºŒä¸ªå‚æ•°  æ˜¯å¦è‡ªåŠ¨åˆ·æ–°åˆ°æ–‡ä»¶
 	/**try {
 	    System.setOut(new PrintStream(new BufferedOutputStream(new 
 	    	FileOutputStream(new File("C:/Users/26368/Videos/Captures/wo.txt"))),true));//
@@ -65,10 +65,10 @@ public class objectStream{
 	    e.printStackTrace();
 	}
 	System.out.print("woshi ");*/
-	//¸Ä»Ø¿ØÖÆÌ¨
+	//æ”¹å›æ§åˆ¶å°
 	//System.setOut(new PrintStream(new BufferedOutputStream(new FileOutputStream(FileDescriptor.out))));
 	
-	//Ä£·ÂScanner »ñÈ¡¿ØÖÆÌ¨µÄÊäÈëÊı¾İ
+	//æ¨¡ä»¿Scanner è·å–æ§åˆ¶å°çš„è¾“å…¥æ•°æ®
 	BufferedReader br=new BufferedReader(new InputStreamReader(new FileInputStream(FileDescriptor.in)));
 	String buf=null;
 	try {
