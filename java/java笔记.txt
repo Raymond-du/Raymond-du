@@ -1,0 +1,100 @@
+调试快捷键/  全局搜索 ctrl+H  建议提示alt+/  删除当前行 ctrl+d   
+自动引入需要包ctrl+shift+0  逐行走  :F6  进入当前行的方法 ;F5
+跳出当前方法:f 7  让程序继续执行  f8  误删恢复  ctrl+z   拉下类方法ctrl+0
+提示修改 Ctrl+1   快捷输入get set 函数  source->getter and Setter
+快捷方式输入构造 source->construction using filed
+
+泛型用法  子类定义的四种用法 父类定义 public class father<T> {}
+public class child<T>extends father{}这里父类中T的变量为object对象
+public class child<T>extends father<T>{}
+public class child extends father{}  对象为object类型
+public class child extends father<String>{}  父类类型为String
+函数的泛型定义在返回值的前面 
+child 泛型数比 father泛型数多
+
+Java的new数组和c++中的new数组不同 
+例如 Car c[]=new Car[3]; 赋值时需要进行 c[0]=new car("宝马");
+
+循环遍历数组for(int i : 数组名){直接用i代替a[]}
+
+用==和!=是对象的比较是对象引用地址的比较 ,用equals进行比较
+Integer d1=100 ;Integer d2=100; d1==d2  true
+Integer d1=130 ;Integer d2=130; d1==d2  false
+在[-128,127]之间的数仍然当成基础类型来处理
+
+在new 数组中new的数量等于数组的length   不是已赋值的长度
+
+创建一个接口类   接口类中只能有常量 抽象方法(抽象方法必须实现)
+public interface MyInterface(){
+	public void test();}
+用implement进行接口操作   接口可以多继承(而继承不能)
+
+在实现java中模板方法模式的实现  (多态和重写的实现)
+首先新建一个接口(或 父类)  再创建多个子类重写方法  
+再模板函数中添加该接口或者父类  指向子类  在函数中调用方法
+
+可变字符序列StringBuilder(线程不安全,效率高)StringBuffer(线程安全,效率低)
+
+内部类的好处(即类中类)
+1.其他地方也用不着改类  提供了更好的封装
+2.内部类可以直接访问外部类中的私有属性
+
+类静态函数  不需要实力化对象直接用对象名.函数名()即可调用
+
+在java中File打开文件或者创建文件,  创建文件方法;//只是程序和文件的联系(不能进行读写)
+File f=new File("c:\\a.txt"); f.createNewFile() //需要捕获异常
+创建单个目录  用mkdir();多个目录用mkdirs();
+
+Comparable和Comparator的区别
+Comparable用来比较的类型需要继承Comparable的接口并实现compareTo函数,一个参数
+Comparator不需要像Comparable中原类型中需要继承接口,,而需要创建比较器类继承Comparator接口 实现compare(两个变量)函数 调用时传入比较器类对象
+collections.sort内之类中的排序(注意collection是容器类 collections是工具类
+
+在java中不可以重载运算符(以重载函数进行代替之)
+
+Random r=new Random();//这里添加种子  ,获取随机数,,可以为时间
+int a=r.getInt(20);半开区间
+
+hashTable和hashMap区别在于线程安全    (hashTable的一个子类 Properties )
+Properties主要作用是用于配置文件的读写 并且键值对都是字符串
+方法  getProperty(String)根据键获取值 setProperties(key,Value)
+load(new FileReader("文件路径"))加载文件 并读取文件的内容存储在pro对象中
+load(InputStream) properties文件格式loadFromXML(InputStream);xml文件
+store(OutPutStream,"对文件的描述");storeToXML(OutputStream, "")同上
+
+OutPutStream和InputStream是抽象类  子类有 FileOutPutStream 和FileInOutStream
+class.getResourceAsStream("/src/Image")这里表示bin下的src  的image文件
+Thread.currentThread().getContextClassLoader().getResourceAsStream("")空代表bin目录   开头不加'/'  和FileReader和FileWriter的区别字节流和字符流的区别
+
+强引用:StrongReference   常量池  一些还在使用的对象  gc 运行时不会回收
+软引用:SoftReference    缓存等 gc运行时可能回收 (内存不够时)
+弱引用:WeakReference gc运行时立即回收
+虚引用:PhantomReference类似无引用,主要用于跟踪对象被回收的状态,不能单独使用,必须与引用队列(ReferenceQuene)联合使用.
+
+三个map接口的实现类
+1.WeakHashMap :键为弱引用(gc运行时,常量不会回收);
+2.IdentityHashMap,键比较地址去重, 相同常量的地址相同
+3.EnumMap:枚举Map,要求键为枚举的值.
+
+在设计链表时  只需要添加自身类型 的next
+	public static void main(String[] args){
+		//将时间安装对应的格式输出字符串   大小写对应的看api说明
+		DateFormat df=new SimpleDateFormat("yyyy-MM-dd hh:mm::ss");
+		Date d=new Date();
+		String s=df.format(d);
+		System.out.println(s);
+		
+		//将字符串转换成时间格式
+		String s1=new String("1920-10-29");
+		DateFormat df1=new SimpleDateFormat("yyyy-MM-dd");//这个格式一定要对应字符串的格式
+		try
+		{
+			Date d1=df1.parse(s1);//这里添加异常获取   如果格式字符串格式不匹配则报错
+			System.out.println(d1);
+		} catch (ParseException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
