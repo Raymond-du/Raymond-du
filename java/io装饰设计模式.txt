@@ -1,0 +1,23 @@
+类之间的四种关系
+1.依赖:形参;局部变量
+2.关联: 属性
+  聚合:属性整体与部分不一致的生命周期(人与手)
+  组合:属性整体与部分一致的生命周期(人与大脑)
+3.继承:父子类的关系
+4,实现:接口与实现类的关系
+public class Voice{
+  private int voice=10;
+  public int say(){
+    System.out.println("声音大小"+voice);
+  }
+}
+
+public class Amplifier{//对voice包装  放大voice的功能
+  private Voice voice;
+  public Amplifier (Voice voice){
+    this.voice=voice;
+  }
+  public int say(){
+    System.out.println("声音大小"+voice*10);
+  }
+}
