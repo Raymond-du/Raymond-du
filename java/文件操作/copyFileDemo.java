@@ -64,7 +64,7 @@ public class copyFileDemo {
 	copyFile(src,dest);
     }
     
-    //实现文件夹及文件的全拷贝
+    //实现文件夹及文件的全拷贝  这里不能将父目录拷贝到子目录中   将会导致超长文件夹 无法删除
     public static void copyDir(File src,File dest) throws FileNotFoundException {
 	if(!src.exists()) {
 	    throw new FileNotFoundException("未找到源文件"+src.getAbsolutePath());
