@@ -1,0 +1,35 @@
+    public static void mergeFile(String srcDir,String fileName) throws IOException {	
+
+	//输出文件对象
+	File file=new File(srcDir+'/'+fileName);
+	if(!file.exists()) {
+	    file.createNewFile();
+	}
+	//输出流
+	OutputStream os=new BufferedOutputStream(new FileOutputStream(file,true));
+	//index是分割文件名和文件类型的索引
+	int index=fileName.indexOf('.');
+	int i=0;	
+	//分割文件的每个输入流
+	Vector<InputStream> vis=new Vector<InputStream>();
+	while(true) {
+	    File temp=new File(srcDir+'/'+fileName.substring(0, index)+"part"+(i++)+fileName.substring(index));
+	    if(!temp.exists()) {
+		break;
+	    }
+	    vis.add(new BufferedInputStream(new FileInputStream(temp)));
+	}
+	//实现对各个输入流的合并
+	SequenceInputStream sis=new SequenceInputStream(vis.elements());
+	//读取长度
+	int len=0;
+	//读入的缓冲 数组
+	byte[] flush=new byte[1024];
+	while(-1!=(len=sis.read(flush))) {
+	    System.out.println(new String(flush,0,len));
+	    os.write(flush, 0, len);	   
+	}	
+	os.flush();
+	sis.close();
+	os.close();
+    }
