@@ -1,0 +1,32 @@
+给定一个字符串 (s) 和一个字符模式 (p)。实现支持 '.' 和 '*' 的正则表达式匹配。
+
+'.' 匹配任意单个字符。
+'*' 匹配零个或多个前面的元素。
+匹配应该覆盖整个字符串 (s) ，而不是部分字符串。
+
+
+vector<vector<int>> f;
+    int m,n;
+    bool isMatch(string s, string p) {
+        n=s.size();
+        m=p.size();
+        f=vector<vector<int>>(n+1,vector<int>(m+1,-1));
+        return dp(0,0,s,p);
+    }
+    
+    int dp(int x,int y,string &s,string &p)
+    {
+        if(f[x][y]!=-1) 
+            return f[x][y];
+        if(y==m)
+            return f[x][y]=x==n;
+        bool first_match=x<n&&(s[x]==p[y]||p[y]=='.');
+        bool ans;
+        if(y+1<m&&p[y+1]=='*')
+        {
+            ans=dp(x,y+2,s,p)||first_match&&dp(x+1,y,s,p);
+        }
+        else
+                ans=first_match&&dp(x+1,y+1,s,p);
+        return f[x][y]=ans;
+    }
