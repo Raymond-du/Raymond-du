@@ -4,8 +4,42 @@
 '*' 匹配零个或多个前面的元素。
 匹配应该覆盖整个字符串 (s) ，而不是部分字符串。
 
+速度稍慢
+    bool isMatch(string s, string p) {
+        bool* match = new bool[s.size()+1]();
+        match[0]=true;
+        int curr=0;
+        while (curr<p.size()){
+            for (int i=s.size();i>=0;i--){
+                if (match[i]){
+                    if (curr+1<p.size()&&p[curr+1]=='*'){
+                        if (p[curr]=='.'){
+                            for (int j=i+1;j<=s.size();++j)
+                                match[j]=true;
+                        }else{
+                            for (int j=i+1;j<=s.size()&&s[j-1]==p[curr];++j)
+                                match[j]=true;
+                        }
+                    }else{
+                        match[i]=false;
+                        if (i<s.size()&&(p[curr]=='.'||p[curr]==s[i]))
+                            match[i+1]=true;
+                    }
+                }
+            }
+            if(curr+1<p.size()&&p[curr+1]=='*')
+                curr+=2;
+            else
+                curr++;
+        }
+        bool ans=match[s.size()];
+        delete[] match;
+        return ans;
+    }
 
-vector<vector<int>> f;
+
+速度块  空间消耗多
+    vector<vector<int>> f;
     int m,n;
     bool isMatch(string s, string p) {
         n=s.size();
