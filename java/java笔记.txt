@@ -1,95 +1,96 @@
-µ÷ÊÔ¿ì½İ¼ü/  È«¾ÖËÑË÷ ctrl+H  ½¨ÒéÌáÊ¾alt+/  É¾³ıµ±Ç°ĞĞ ctrl+d   
-×Ô¶¯ÒıÈëĞèÒª°üctrl+shift+0  ÖğĞĞ×ß  :F6  ½øÈëµ±Ç°ĞĞµÄ·½·¨ ;F5
-Ìø³öµ±Ç°·½·¨:f 7  ÈÃ³ÌĞò¼ÌĞøÖ´ĞĞ  f8  ÎóÉ¾»Ö¸´  ctrl+z   À­ÏÂÀà·½·¨ctrl+0
-ÌáÊ¾ĞŞ¸Ä Ctrl+1   ¿ì½İÊäÈëget set º¯Êı  source->getter and Setter
-¿ì½İ·½Ê½ÊäÈë¹¹Ôì source->construction using filed
+è°ƒè¯•å¿«æ·é”®/  å…¨å±€æœç´¢ ctrl+H  å»ºè®®æç¤ºalt+/  åˆ é™¤å½“å‰è¡Œ ctrl+d   
+è‡ªåŠ¨å¼•å…¥éœ€è¦åŒ…ctrl+shift+0  é€è¡Œèµ°  :F6  è¿›å…¥å½“å‰è¡Œçš„æ–¹æ³• ;F5
+è·³å‡ºå½“å‰æ–¹æ³•:f 7  è®©ç¨‹åºç»§ç»­æ‰§è¡Œ  f8  è¯¯åˆ æ¢å¤  ctrl+z   æ‹‰ä¸‹ç±»æ–¹æ³•ctrl+0
+æç¤ºä¿®æ”¹ Ctrl+1   å¿«æ·è¾“å…¥get set å‡½æ•°  source->getter and Setter
+å¿«æ·æ–¹å¼è¾“å…¥æ„é€  source->construction using filed
 
-·ºĞÍÓÃ·¨  ×ÓÀà¶¨ÒåµÄËÄÖÖÓÃ·¨ ¸¸Àà¶¨Òå public class father<T> {}
-public class child<T>extends father{}ÕâÀï¸¸ÀàÖĞTµÄ±äÁ¿Îªobject¶ÔÏó
+æ³›å‹ç”¨æ³•  å­ç±»å®šä¹‰çš„å››ç§ç”¨æ³• çˆ¶ç±»å®šä¹‰ public class father<T> {}
+public class child<T>extends father{}è¿™é‡Œçˆ¶ç±»ä¸­Tçš„å˜é‡ä¸ºobjectå¯¹è±¡
 public class child<T>extends father<T>{}
-public class child extends father{}  ¶ÔÏóÎªobjectÀàĞÍ
-public class child extends father<String>{}  ¸¸ÀàÀàĞÍÎªString
-º¯ÊıµÄ·ºĞÍ¶¨ÒåÔÚ·µ»ØÖµµÄÇ°Ãæ 
-child ·ºĞÍÊı±È father·ºĞÍÊı¶à
+public class child extends father{}  å¯¹è±¡ä¸ºobjectç±»å‹
+public class child extends father<String>{}  çˆ¶ç±»ç±»å‹ä¸ºString
+å‡½æ•°çš„æ³›å‹å®šä¹‰åœ¨è¿”å›å€¼çš„å‰é¢ 
+child æ³›å‹æ•°æ¯” fatheræ³›å‹æ•°å¤š
 
-JavaµÄnewÊı×éºÍc++ÖĞµÄnewÊı×é²»Í¬ 
-ÀıÈç Car c[]=new Car[3]; ¸³ÖµÊ±ĞèÒª½øĞĞ c[0]=new car("±¦Âí");
+Javaçš„newæ•°ç»„å’Œc++ä¸­çš„newæ•°ç»„ä¸åŒ 
+ä¾‹å¦‚ Car c[]=new Car[3]; èµ‹å€¼æ—¶éœ€è¦è¿›è¡Œ c[0]=new car("å®é©¬");
 
-Ñ­»·±éÀúÊı×éfor(int i : Êı×éÃû){Ö±½ÓÓÃi´úÌæa[]}
+å¾ªç¯éå†æ•°ç»„for(int i : æ•°ç»„å){ç›´æ¥ç”¨iä»£æ›¿a[]}
 
-ÓÃ==ºÍ!=ÊÇ¶ÔÏóµÄ±È½ÏÊÇ¶ÔÏóÒıÓÃµØÖ·µÄ±È½Ï ,ÓÃequals½øĞĞ±È½Ï
+ç”¨==å’Œ!=æ˜¯å¯¹è±¡çš„æ¯”è¾ƒæ˜¯å¯¹è±¡å¼•ç”¨åœ°å€çš„æ¯”è¾ƒ ,ç”¨equalsè¿›è¡Œæ¯”è¾ƒ
 Integer d1=100 ;Integer d2=100; d1==d2  true
 Integer d1=130 ;Integer d2=130; d1==d2  false
-ÔÚ[-128,127]Ö®¼äµÄÊıÈÔÈ»µ±³É»ù´¡ÀàĞÍÀ´´¦Àí
+åœ¨[-128,127]ä¹‹é—´çš„æ•°ä»ç„¶å½“æˆåŸºç¡€ç±»å‹æ¥å¤„ç†
 
-ÔÚnew Êı×éÖĞnewµÄÊıÁ¿µÈÓÚÊı×éµÄlength   ²»ÊÇÒÑ¸³ÖµµÄ³¤¶È
+åœ¨new æ•°ç»„ä¸­newçš„æ•°é‡ç­‰äºæ•°ç»„çš„length   ä¸æ˜¯å·²èµ‹å€¼çš„é•¿åº¦
 
-´´½¨Ò»¸ö½Ó¿ÚÀà   ½Ó¿ÚÀàÖĞÖ»ÄÜÓĞ³£Á¿ ³éÏó·½·¨(³éÏó·½·¨±ØĞëÊµÏÖ)
+åˆ›å»ºä¸€ä¸ªæ¥å£ç±»   æ¥å£ç±»ä¸­åªèƒ½æœ‰å¸¸é‡ æŠ½è±¡æ–¹æ³•(æŠ½è±¡æ–¹æ³•å¿…é¡»å®ç°)
 public interface MyInterface(){
 	public void test();}
-ÓÃimplement½øĞĞ½Ó¿Ú²Ù×÷   ½Ó¿Ú¿ÉÒÔ¶à¼Ì³Ğ(¶ø¼Ì³Ğ²»ÄÜ)
+ç”¨implementè¿›è¡Œæ¥å£æ“ä½œ   æ¥å£å¯ä»¥å¤šç»§æ‰¿(è€Œç»§æ‰¿ä¸èƒ½)
 
-ÔÚÊµÏÖjavaÖĞÄ£°å·½·¨Ä£Ê½µÄÊµÏÖ  (¶àÌ¬ºÍÖØĞ´µÄÊµÏÖ)
-Ê×ÏÈĞÂ½¨Ò»¸ö½Ó¿Ú(»ò ¸¸Àà)  ÔÙ´´½¨¶à¸ö×ÓÀàÖØĞ´·½·¨  
-ÔÙÄ£°åº¯ÊıÖĞÌí¼Ó¸Ã½Ó¿Ú»òÕß¸¸Àà  Ö¸Ïò×ÓÀà  ÔÚº¯ÊıÖĞµ÷ÓÃ·½·¨
+åœ¨å®ç°javaä¸­æ¨¡æ¿æ–¹æ³•æ¨¡å¼çš„å®ç°  (å¤šæ€å’Œé‡å†™çš„å®ç°)
+é¦–å…ˆæ–°å»ºä¸€ä¸ªæ¥å£(æˆ– çˆ¶ç±»)  å†åˆ›å»ºå¤šä¸ªå­ç±»é‡å†™æ–¹æ³•  
+å†æ¨¡æ¿å‡½æ•°ä¸­æ·»åŠ è¯¥æ¥å£æˆ–è€…çˆ¶ç±»  æŒ‡å‘å­ç±»  åœ¨å‡½æ•°ä¸­è°ƒç”¨æ–¹æ³•
 
-¿É±ä×Ö·ûĞòÁĞStringBuilder(Ïß³Ì²»°²È«,Ğ§ÂÊ¸ß)StringBuffer(Ïß³Ì°²È«,Ğ§ÂÊµÍ)
+å¯å˜å­—ç¬¦åºåˆ—StringBuilder(çº¿ç¨‹ä¸å®‰å…¨,æ•ˆç‡é«˜)StringBuffer(çº¿ç¨‹å®‰å…¨,æ•ˆç‡ä½)
 
-ÄÚ²¿ÀàµÄºÃ´¦(¼´ÀàÖĞÀà)
-1.ÆäËûµØ·½Ò²ÓÃ²»×Å¸ÄÀà  Ìá¹©ÁË¸üºÃµÄ·â×°
-2.ÄÚ²¿Àà¿ÉÒÔÖ±½Ó·ÃÎÊÍâ²¿ÀàÖĞµÄË½ÓĞÊôĞÔ
+å†…éƒ¨ç±»çš„å¥½å¤„(å³ç±»ä¸­ç±»)
+1.å…¶ä»–åœ°æ–¹ä¹Ÿç”¨ä¸ç€æ”¹ç±»  æä¾›äº†æ›´å¥½çš„å°è£…
+2.å†…éƒ¨ç±»å¯ä»¥ç›´æ¥è®¿é—®å¤–éƒ¨ç±»ä¸­çš„ç§æœ‰å±æ€§
 
-Àà¾²Ì¬º¯Êı  ²»ĞèÒªÊµÁ¦»¯¶ÔÏóÖ±½ÓÓÃ¶ÔÏóÃû.º¯ÊıÃû()¼´¿Éµ÷ÓÃ
+ç±»é™æ€å‡½æ•°  ä¸éœ€è¦å®åŠ›åŒ–å¯¹è±¡ç›´æ¥ç”¨å¯¹è±¡å.å‡½æ•°å()å³å¯è°ƒç”¨
 
-ÔÚjavaÖĞFile´ò¿ªÎÄ¼ş»òÕß´´½¨ÎÄ¼ş,  ´´½¨ÎÄ¼ş·½·¨;//Ö»ÊÇ³ÌĞòºÍÎÄ¼şµÄÁªÏµ(²»ÄÜ½øĞĞ¶ÁĞ´)
-File f=new File("c:\\a.txt"); f.createNewFile() //ĞèÒª²¶»ñÒì³£
-´´½¨µ¥¸öÄ¿Â¼  ÓÃmkdir();¶à¸öÄ¿Â¼ÓÃmkdirs();
+åœ¨javaä¸­Fileæ‰“å¼€æ–‡ä»¶æˆ–è€…åˆ›å»ºæ–‡ä»¶,  åˆ›å»ºæ–‡ä»¶æ–¹æ³•;//åªæ˜¯ç¨‹åºå’Œæ–‡ä»¶çš„è”ç³»(ä¸èƒ½è¿›è¡Œè¯»å†™)
+File f=new File("c:\\a.txt"); f.createNewFile() //éœ€è¦æ•è·å¼‚å¸¸
+åˆ›å»ºå•ä¸ªç›®å½•  ç”¨mkdir();å¤šä¸ªç›®å½•ç”¨mkdirs();
+åˆ›å»ºä¸´æ—¶æ–‡ä»¶file.createTempFile()  å’Œfile.deleteOnExit åˆä½œè°ƒç”¨
 
-ComparableºÍComparatorµÄÇø±ğ
-ComparableÓÃÀ´±È½ÏµÄÀàĞÍĞèÒª¼Ì³ĞComparableµÄ½Ó¿Ú²¢ÊµÏÖcompareToº¯Êı,Ò»¸ö²ÎÊı
-Comparator²»ĞèÒªÏñComparableÖĞÔ­ÀàĞÍÖĞĞèÒª¼Ì³Ğ½Ó¿Ú,,¶øĞèÒª´´½¨±È½ÏÆ÷Àà¼Ì³ĞComparator½Ó¿Ú ÊµÏÖcompare(Á½¸ö±äÁ¿)º¯Êı µ÷ÓÃÊ±´«Èë±È½ÏÆ÷Àà¶ÔÏó
-collections.sortÄÚÖ®ÀàÖĞµÄÅÅĞò(×¢ÒâcollectionÊÇÈİÆ÷Àà collectionsÊÇ¹¤¾ßÀà
+Comparableå’ŒComparatorçš„åŒºåˆ«
+Comparableç”¨æ¥æ¯”è¾ƒçš„ç±»å‹éœ€è¦ç»§æ‰¿Comparableçš„æ¥å£å¹¶å®ç°compareToå‡½æ•°,ä¸€ä¸ªå‚æ•°
+Comparatorä¸éœ€è¦åƒComparableä¸­åŸç±»å‹ä¸­éœ€è¦ç»§æ‰¿æ¥å£,,è€Œéœ€è¦åˆ›å»ºæ¯”è¾ƒå™¨ç±»ç»§æ‰¿Comparatoræ¥å£ å®ç°compare(ä¸¤ä¸ªå˜é‡)å‡½æ•° è°ƒç”¨æ—¶ä¼ å…¥æ¯”è¾ƒå™¨ç±»å¯¹è±¡
+collections.sortå†…ä¹‹ç±»ä¸­çš„æ’åº(æ³¨æ„collectionæ˜¯å®¹å™¨ç±» collectionsæ˜¯å·¥å…·ç±»
 
-ÔÚjavaÖĞ²»¿ÉÒÔÖØÔØÔËËã·û(ÒÔÖØÔØº¯Êı½øĞĞ´úÌæÖ®)
+åœ¨javaä¸­ä¸å¯ä»¥é‡è½½è¿ç®—ç¬¦(ä»¥é‡è½½å‡½æ•°è¿›è¡Œä»£æ›¿ä¹‹)
 
-Random r=new Random();//ÕâÀïÌí¼ÓÖÖ×Ó  ,»ñÈ¡Ëæ»úÊı,,¿ÉÒÔÎªÊ±¼ä
-int a=r.getInt(20);°ë¿ªÇø¼ä
+Random r=new Random();//è¿™é‡Œæ·»åŠ ç§å­  ,è·å–éšæœºæ•°,,å¯ä»¥ä¸ºæ—¶é—´
+int a=r.getInt(20);åŠå¼€åŒºé—´
 
-hashTableºÍhashMapÇø±ğÔÚÓÚÏß³Ì°²È«    (hashTableµÄÒ»¸ö×ÓÀà Properties )
-PropertiesÖ÷Òª×÷ÓÃÊÇÓÃÓÚÅäÖÃÎÄ¼şµÄ¶ÁĞ´ ²¢ÇÒ¼üÖµ¶Ô¶¼ÊÇ×Ö·û´®
-·½·¨  getProperty(String)¸ù¾İ¼ü»ñÈ¡Öµ setProperties(key,Value)
-load(new FileReader("ÎÄ¼şÂ·¾¶"))¼ÓÔØÎÄ¼ş ²¢¶ÁÈ¡ÎÄ¼şµÄÄÚÈİ´æ´¢ÔÚpro¶ÔÏóÖĞ
-load(InputStream) propertiesÎÄ¼ş¸ñÊ½loadFromXML(InputStream);xmlÎÄ¼ş
-store(OutPutStream,"¶ÔÎÄ¼şµÄÃèÊö");storeToXML(OutputStream, "")Í¬ÉÏ
+hashTableå’ŒhashMapåŒºåˆ«åœ¨äºçº¿ç¨‹å®‰å…¨    (hashTableçš„ä¸€ä¸ªå­ç±» Properties )
+Propertiesä¸»è¦ä½œç”¨æ˜¯ç”¨äºé…ç½®æ–‡ä»¶çš„è¯»å†™ å¹¶ä¸”é”®å€¼å¯¹éƒ½æ˜¯å­—ç¬¦ä¸²
+æ–¹æ³•  getProperty(String)æ ¹æ®é”®è·å–å€¼ setProperties(key,Value)
+load(new FileReader("æ–‡ä»¶è·¯å¾„"))åŠ è½½æ–‡ä»¶ å¹¶è¯»å–æ–‡ä»¶çš„å†…å®¹å­˜å‚¨åœ¨proå¯¹è±¡ä¸­
+load(InputStream) propertiesæ–‡ä»¶æ ¼å¼loadFromXML(InputStream);xmlæ–‡ä»¶
+store(OutPutStream,"å¯¹æ–‡ä»¶çš„æè¿°");storeToXML(OutputStream, "")åŒä¸Š
 
-OutPutStreamºÍInputStreamÊÇ³éÏóÀà  ×ÓÀàÓĞ FileOutPutStream ºÍFileInOutStream
-class.getResourceAsStream("/src/Image")ÕâÀï±íÊ¾binÏÂµÄsrc  µÄimageÎÄ¼ş
-Thread.currentThread().getContextClassLoader().getResourceAsStream("")¿Õ´ú±íbinÄ¿Â¼   ¿ªÍ·²»¼Ó'/'  ºÍFileReaderºÍFileWriterµÄÇø±ğ×Ö½ÚÁ÷ºÍ×Ö·ûÁ÷µÄÇø±ğ
+OutPutStreamå’ŒInputStreamæ˜¯æŠ½è±¡ç±»  å­ç±»æœ‰ FileOutPutStream å’ŒFileInOutStream
+class.getResourceAsStream("/src/Image")è¿™é‡Œè¡¨ç¤ºbinä¸‹çš„src  çš„imageæ–‡ä»¶
+Thread.currentThread().getContextClassLoader().getResourceAsStream("")ç©ºä»£è¡¨binç›®å½•   å¼€å¤´ä¸åŠ '/'  å’ŒFileReaderå’ŒFileWriterçš„åŒºåˆ«å­—èŠ‚æµå’Œå­—ç¬¦æµçš„åŒºåˆ«
 
-Ç¿ÒıÓÃ:StrongReference   ³£Á¿³Ø  Ò»Ğ©»¹ÔÚÊ¹ÓÃµÄ¶ÔÏó  gc ÔËĞĞÊ±²»»á»ØÊÕ
-ÈíÒıÓÃ:SoftReference    »º´æµÈ gcÔËĞĞÊ±¿ÉÄÜ»ØÊÕ (ÄÚ´æ²»¹»Ê±)
-ÈõÒıÓÃ:WeakReference gcÔËĞĞÊ±Á¢¼´»ØÊÕ
-ĞéÒıÓÃ:PhantomReferenceÀàËÆÎŞÒıÓÃ,Ö÷ÒªÓÃÓÚ¸ú×Ù¶ÔÏó±»»ØÊÕµÄ×´Ì¬,²»ÄÜµ¥¶ÀÊ¹ÓÃ,±ØĞëÓëÒıÓÃ¶ÓÁĞ(ReferenceQuene)ÁªºÏÊ¹ÓÃ.
+å¼ºå¼•ç”¨:StrongReference   å¸¸é‡æ±   ä¸€äº›è¿˜åœ¨ä½¿ç”¨çš„å¯¹è±¡  gc è¿è¡Œæ—¶ä¸ä¼šå›æ”¶
+è½¯å¼•ç”¨:SoftReference    ç¼“å­˜ç­‰ gcè¿è¡Œæ—¶å¯èƒ½å›æ”¶ (å†…å­˜ä¸å¤Ÿæ—¶)
+å¼±å¼•ç”¨:WeakReference gcè¿è¡Œæ—¶ç«‹å³å›æ”¶
+è™šå¼•ç”¨:PhantomReferenceç±»ä¼¼æ— å¼•ç”¨,ä¸»è¦ç”¨äºè·Ÿè¸ªå¯¹è±¡è¢«å›æ”¶çš„çŠ¶æ€,ä¸èƒ½å•ç‹¬ä½¿ç”¨,å¿…é¡»ä¸å¼•ç”¨é˜Ÿåˆ—(ReferenceQuene)è”åˆä½¿ç”¨.
 
-Èı¸ömap½Ó¿ÚµÄÊµÏÖÀà
-1.WeakHashMap :¼üÎªÈõÒıÓÃ(gcÔËĞĞÊ±,³£Á¿²»»á»ØÊÕ);
-2.IdentityHashMap,¼ü±È½ÏµØÖ·È¥ÖØ, ÏàÍ¬³£Á¿µÄµØÖ·ÏàÍ¬
-3.EnumMap:Ã¶¾ÙMap,ÒªÇó¼üÎªÃ¶¾ÙµÄÖµ.
+ä¸‰ä¸ªmapæ¥å£çš„å®ç°ç±»
+1.WeakHashMap :é”®ä¸ºå¼±å¼•ç”¨(gcè¿è¡Œæ—¶,å¸¸é‡ä¸ä¼šå›æ”¶);
+2.IdentityHashMap,é”®æ¯”è¾ƒåœ°å€å»é‡, ç›¸åŒå¸¸é‡çš„åœ°å€ç›¸åŒ
+3.EnumMap:æšä¸¾Map,è¦æ±‚é”®ä¸ºæšä¸¾çš„å€¼.
 
-ÔÚÉè¼ÆÁ´±íÊ±  Ö»ĞèÒªÌí¼Ó×ÔÉíÀàĞÍ µÄnext
+åœ¨è®¾è®¡é“¾è¡¨æ—¶  åªéœ€è¦æ·»åŠ è‡ªèº«ç±»å‹ çš„next
 	public static void main(String[] args){
-		//½«Ê±¼ä°²×°¶ÔÓ¦µÄ¸ñÊ½Êä³ö×Ö·û´®   ´óĞ¡Ğ´¶ÔÓ¦µÄ¿´apiËµÃ÷
+		//å°†æ—¶é—´å®‰è£…å¯¹åº”çš„æ ¼å¼è¾“å‡ºå­—ç¬¦ä¸²   å¤§å°å†™å¯¹åº”çš„çœ‹apiè¯´æ˜
 		DateFormat df=new SimpleDateFormat("yyyy-MM-dd hh:mm::ss");
 		Date d=new Date();
 		String s=df.format(d);
 		System.out.println(s);
 		
-		//½«×Ö·û´®×ª»»³ÉÊ±¼ä¸ñÊ½
+		//å°†å­—ç¬¦ä¸²è½¬æ¢æˆæ—¶é—´æ ¼å¼
 		String s1=new String("1920-10-29");
-		DateFormat df1=new SimpleDateFormat("yyyy-MM-dd");//Õâ¸ö¸ñÊ½Ò»¶¨Òª¶ÔÓ¦×Ö·û´®µÄ¸ñÊ½
+		DateFormat df1=new SimpleDateFormat("yyyy-MM-dd");//è¿™ä¸ªæ ¼å¼ä¸€å®šè¦å¯¹åº”å­—ç¬¦ä¸²çš„æ ¼å¼
 		try
 		{
-			Date d1=df1.parse(s1);//ÕâÀïÌí¼ÓÒì³£»ñÈ¡   Èç¹û¸ñÊ½×Ö·û´®¸ñÊ½²»Æ¥ÅäÔò±¨´í
+			Date d1=df1.parse(s1);//è¿™é‡Œæ·»åŠ å¼‚å¸¸è·å–   å¦‚æœæ ¼å¼å­—ç¬¦ä¸²æ ¼å¼ä¸åŒ¹é…åˆ™æŠ¥é”™
 			System.out.println(d1);
 		} catch (ParseException e)
 		{
