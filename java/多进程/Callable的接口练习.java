@@ -8,18 +8,18 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 /**
- * Ê¹ÓÃcallable´´½¨Ïß³Ì µÄcallº¯ÊıºÍrunnableµÄrun¶Ô±È
- * callÓĞ·µ»ØÖµ,call¿ÉÒÔÈÓ³öÒì³£
+ * ä½¿ç”¨callableåˆ›å»ºçº¿ç¨‹ çš„callå‡½æ•°å’Œrunnableçš„runå¯¹æ¯”
+ * callæœ‰è¿”å›å€¼,callå¯ä»¥æ‰”å‡ºå¼‚å¸¸
  * @author 26368
- *  ¹êÍÃÈüÅÜµÄÄ£ÄâÁ·Ï°
+ *  é¾Ÿå…”èµ›è·‘çš„æ¨¡æ‹Ÿç»ƒä¹ 
  */
 public class test {
     public static void main(String[] args) throws InterruptedException, ExecutionException {
-	//´´½¨Ïß³Ì  ²ÎÊıÊÇ´´½¨µÄÏß³ÌÊı  Executor-->Ö´ĞĞÕß
+	//åˆ›å»ºçº¿ç¨‹  å‚æ•°æ˜¯åˆ›å»ºçš„çº¿ç¨‹æ•°  Executor-->æ‰§è¡Œè€…
 	ExecutorService ser=Executors.newFixedThreadPool(2);
-	race rabbit=new race("ÍÃ×Ó",200);
-	race tortoise=new race("ÎÚ¹ê",400);
-	//»ñÈ¡ÔËĞĞºóµÄ·µ»ØÖµ  ÀûÓÃfutureµÄget»ñÈ¡·µ»ØÖµ
+	race rabbit=new race("å…”å­",200);
+	race tortoise=new race("ä¹Œé¾Ÿ",400);
+	//è·å–è¿è¡Œåçš„è¿”å›å€¼  åˆ©ç”¨futureçš„getè·å–è¿”å›å€¼
 	Future<Integer> result1=ser.submit(rabbit);
 	Future<Integer> result2=ser.submit(tortoise);
 	
@@ -27,18 +27,18 @@ public class test {
 	rabbit.setFlag(false);
 	tortoise.setFlag(false);
 	
-	System.out.println("ÍÃ×ÓÅÜÁË"+result1.get()+"ÎÚ¹êÅÜÁË"+result2.get());
-	//¹Ø±ÕÏß³Ì  ²»»á×Ô¶¯ÍË³ö
+	System.out.println("å…”å­è·‘äº†"+result1.get()+"ä¹Œé¾Ÿè·‘äº†"+result2.get());
+	//å…³é—­çº¿ç¨‹  ä¸ä¼šè‡ªåŠ¨é€€å‡º
 	ser.shutdownNow();
     }
 }
 
-//ÕâÀï·ºĞÍÊÇÖ¸Ïß³ÌÔËĞĞºóµÄ·µ»ØÖµ
+//è¿™é‡Œæ³›å‹æ˜¯æŒ‡çº¿ç¨‹è¿è¡Œåçš„è¿”å›å€¼
 class race implements Callable<Integer>{
     private String name;
-    private long time ;//Ã¿²½µÄÊ±¼ä
+    private long time ;//æ¯æ­¥çš„æ—¶é—´
     private int step=0;
-    private boolean flag=true;//±êÖ¾ÊÇ·ñ¿ÉÒÔÅÜ
+    private boolean flag=true;//æ ‡å¿—æ˜¯å¦å¯ä»¥è·‘
        
     public race(String name, long time) {
 	super();
