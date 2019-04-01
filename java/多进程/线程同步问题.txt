@@ -1,0 +1,73 @@
+package Thinking;
+/**
+ * 单例设计模式
+ * 确保一个类只有一个对象
+ * 懒汉式
+ * 
+ * @author 26368
+ *
+ */
+public class SynDemo implements Runnable{
+    public static void main(String[] args) {
+	Thread s1=new Thread(new SynDemo(),"1b（￣▽￣）d　");
+	Thread s2=new Thread(new SynDemo(),"2b（￣▽￣）d　");
+	s1.start();
+	s2.start();
+    }
+
+    @Override
+    public void run() {
+	System.out.println(Thread.currentThread().getName()+Jvm2.getJ());
+    }    
+}
+
+class Jvm{
+    //声明一个私有静态成员
+    private static Jvm Instance=null;
+    //私有构造函数   避免直接创建对象
+    private Jvm() {
+	
+    }
+    
+    //这里多线程会发生  创建连个对象   不能够同步Instance对象
+    /**public static Jvm getInstance() {
+	if(null==Instance) {
+	    synchronized(Jvm.class) {
+		if(null==Instance) {
+		    Instance=new Jvm();
+		}
+	    }
+	}
+	return Instance;
+    }
+     */
+    //创建一个对外开放的公共的静态方法访问该变量,如果变量没有对象,则创建doubleChecking
+    public static Jvm getInstance() {
+	if(null==Instance) {//如果不为空直接返回
+	    //假如线程同时进入到这里  就需要等待第一个进入的线程  
+	    //再次判断Instance是否为空  如果为空则创建
+	    synchronized(Jvm.class) {
+                if(null==Instance) {
+                    Instance=new Jvm();
+                }		
+	    }
+	}
+	return Instance;
+    }
+}
+//饿汉式 
+//不需要设置同步  
+class Jvm2{
+    //声明私有的静态属性,同时创建该对象
+    private static Jvm2 j=new Jvm2(); 
+    //构造函数私有化
+    private Jvm2(){
+	
+    }
+    //实现对外开放的静态方法
+    public static Jvm2 getJ() {
+	return j;
+    }
+}
+
+
