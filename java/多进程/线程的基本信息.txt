@@ -1,0 +1,33 @@
+/**
+ * sleep  休眠  不会释放锁
+ * 多用于计时器  等模拟网络延时等  与时间相关的
+ * @author 26368
+ *
+ *线程的基本信息
+ *Thread.currentThread返回当前线程
+ *isAlive判段线程是否运行
+ *setName设置线程名
+ *getName获得线程名
+ *
+ */
+	
+public class Web12306 implements Runnable{
+  
+    public static void main(String[] args) {
+	Thread t0=new Thread(new Web12306(),"first");
+	t0.start();
+	System.out.println(Thread.currentThread().getName());
+	System.out.println("第一个线程是否还在运行"+t0.isAlive());
+	try {
+	    Thread.sleep(100);//在等待100毫秒后 线程t0 自动退出
+	} catch (InterruptedException e) {
+	    e.printStackTrace();
+	}
+	System.out.println("第一个线程是否还在运行"+t0.isAlive());
+    }
+
+    @Override
+    public void run() {
+	System.out.println(Thread.currentThread().getName());
+    }
+}
