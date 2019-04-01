@@ -1,0 +1,60 @@
+package Thinking;
+
+public class Web12306 implements Runnable{
+    private int ticket=50;//有50张票
+    private boolean flag=true;
+    @Override
+    public void run() {
+	while(flag) {
+	    test3();
+	}
+    }
+    
+    //线程不安全  发生重复售票
+    private void test() {
+	if(ticket<=0) {
+	    flag=false;
+	    return ;
+	}
+	System.out.println(Thread.currentThread().getName()+"抢到了"+ticket--);
+    }
+    
+    //线程安全  不会发生重复售票
+    //不同对象 调用该函数时等待前一个对象退出
+    private synchronized void test2(){
+	if(ticket<=0) {
+	    flag=false;
+	    return ;
+	}
+	System.out.println(Thread.currentThread().getName()+"抢到了"+ticket--);
+    }
+    
+    //线程不安全  锁定了ticket但是没有锁定flag
+    private void test3() {
+	synchronized(this) {
+	    if(ticket<=0) {
+		    flag=false;
+		    return ;
+	    }
+	    try {
+		Thread.sleep(200);
+	    } catch (InterruptedException e) {
+		e.printStackTrace();
+	    }
+	    System.out.println(Thread.currentThread().getName()+"抢到了"+ticket--);
+	}
+    }
+    
+    public static void main(String[] args) {
+	Web12306 w=new Web12306();
+	Thread t1=new Thread(w,"甲");
+	Thread t2=new Thread(w,"乙");
+	Thread t3=new Thread(w,"丙");
+	Thread t4=new Thread(w,"丁");
+	t1.start();
+	t2.start();
+	t3.start();
+	t4.start();	
+    }
+    
+}
