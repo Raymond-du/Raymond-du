@@ -1,0 +1,27 @@
+/**
+ *线程的优先级设置
+ *setPriority() 10为最高级  1为最低级  5为中等级
+ *默认有优先级是5
+ *
+ */
+	
+public class Web12306 implements Runnable{
+  
+    public static void main(String[] args) {
+	Thread t0=new Thread(new Web12306(),"first");
+	t0.start();
+	t0.setPriority(10);
+	Thread.currentThread().setPriority(1);//将当前线程优先级设置为1 
+	for(int i=0;i<100;i++) {
+	    System.out.println("main"+i);
+	}
+    }
+
+    @Override
+    public void run() {
+	System.out.println(Thread.currentThread().getName());
+	for(int i=0;i<50;i++) {
+	    System.out.println("test"+i);
+	}
+    }
+}
