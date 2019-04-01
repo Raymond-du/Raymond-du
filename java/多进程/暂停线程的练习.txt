@@ -1,3 +1,6 @@
+
+ * sleep  休眠  不会释放锁
+ * 多用于计时器  等模拟网络延时等  与时间相关的
 public class test implements Runnable{
   
     public static void main(String[] args) {
