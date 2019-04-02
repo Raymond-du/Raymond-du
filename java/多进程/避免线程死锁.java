@@ -1,28 +1,28 @@
 package Thinking;
 
 /**
- * Éú²úÏû·ÑÕßÄ£Ê½
- * ±ÜÃâ  Ïß³ÌµÄËÀËø
+ * ç”Ÿäº§æ¶ˆè´¹è€…æ¨¡å¼
+ * é¿å…  çº¿ç¨‹çš„æ­»é”
  * @author 26368
  *
  */
 
-//±íÊ¾Ó°Æ¬   ĞèÒª±íÑİÕß ÑİºÍÏû·ÑÕß¿´
+//è¡¨ç¤ºå½±ç‰‡   éœ€è¦è¡¨æ¼”è€… æ¼”å’Œæ¶ˆè´¹è€…çœ‹
 public class Movie{
     
-    public  String name ;//µçÓ°Ãû×Ö
-    private boolean flag=true;//true±íÊ¾Éú²úÕß¿ÉÒÔ²Ù×÷  false±íÊ¾ Ïû·ÑÕß²Ù×÷
+    public  String name ;//ç”µå½±åå­—
+    private boolean flag=true;//trueè¡¨ç¤ºç”Ÿäº§è€…å¯ä»¥æ“ä½œ  falseè¡¨ç¤º æ¶ˆè´¹è€…æ“ä½œ
     
     public synchronized void play(String name) {
 	if(false==flag) {
-	    try {//Èç¹ûflagÊÇfalse  Ôò½øÈëÏß³ÌµÈ´ı
+	    try {//å¦‚æœflagæ˜¯false  åˆ™è¿›å…¥çº¿ç¨‹ç­‰å¾…
 		this.wait();
 	    } catch (InterruptedException e) {
 		e.printStackTrace();
 	    }
 	}
 	try {
-	    Thread.sleep(200);//Ä£Äâ½øĞĞÉú²úÊ±¼ä
+	    Thread.sleep(200);//æ¨¡æ‹Ÿè¿›è¡Œç”Ÿäº§æ—¶é—´
 	} catch (InterruptedException e) {
 	    e.printStackTrace();
 	}
@@ -33,7 +33,7 @@ public class Movie{
     
     public synchronized void watch() {
 	if(flag) {
-	    try {//Èç¹ûflagÊÇtrueÔò½øÈëÏß³ÌµÈ´ı
+	    try {//å¦‚æœflagæ˜¯trueåˆ™è¿›å…¥çº¿ç¨‹ç­‰å¾…
 		this.wait();
 	    } catch (InterruptedException e) {
 		e.printStackTrace();
@@ -58,7 +58,7 @@ public class Movie{
 	t1.start();
     }
 }
-//±íÊ¾ÖÆ×÷Õß
+//è¡¨ç¤ºåˆ¶ä½œè€…
 class player implements Runnable{
 
     Movie m;    
@@ -70,12 +70,12 @@ class player implements Runnable{
     @Override
     public void run() {
 	for(int i=0;i<20;i++) {
-	    m.play("µçÓ°"+i);
-	    System.out.println("Éú²úÕßÉú²ú"+m.name);
+	    m.play("ç”µå½±"+i);
+	    System.out.println("ç”Ÿäº§è€…ç”Ÿäº§"+m.name);
 	}
     }    
 }
-//Ïû·ÑÕß
+//æ¶ˆè´¹è€…
 class Watcher implements Runnable{
 
     Movie m;
@@ -86,7 +86,7 @@ class Watcher implements Runnable{
     public void run() {
 	for(int i=0;i<20;i++) {
 	    m.watch();
-	    System.out.println("Ïû·ÑÕß¹Û¿´ÁË"+m.name);
+	    System.out.println("æ¶ˆè´¹è€…è§‚çœ‹äº†"+m.name);
 	}
     }
     
