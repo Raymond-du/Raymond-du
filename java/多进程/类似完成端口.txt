@@ -1,0 +1,58 @@
+package Thinking;
+
+import java.util.concurrent.Callable;
+import java.util.concurrent.CompletionService;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorCompletionService;
+import java.util.concurrent.Executors;
+
+/**
+ * ExecutorService和CompletionService的比较
+ * 前者利用future 获得任务的返回值  有序结果   但不能获得及时结果
+ * 后者的take函数  可以及时获得任务的返回值,但是不能获得有序的结果  
+ * @author 26368
+ *
+ */
+
+
+public class TimeDemo implements Callable<String>{
+
+    private int num;
+    private String name;
+    @Override
+    public String call() throws Exception {
+	while(0<=num) {
+	    Thread.sleep(200);
+	    num--;
+	}
+	return name+"已结束";
+    }
+    public TimeDemo(int num,String name) {
+	super();
+	this.num = num;
+	this.name=name;
+    }
+    
+    public static void main(String[] args) {
+	TimeDemo t1=new TimeDemo(30,"张三");	
+	TimeDemo t2=new TimeDemo(10,"李四");
+	TimeDemo t3=new TimeDemo(15,"王五");
+	//创建两个线程     新任务需要等到有空闲进程 才开始运行 
+	CompletionService<String> cs=new ExecutorCompletionService<String>(Executors.newFixedThreadPool(2));
+	cs.submit(t1);
+	cs.submit(t2);
+	cs.submit(t3);
+	
+	//completionService  的take函数可以返回先运行结束的任务    
+	//如果任务没有结束  future的get函数  阻塞到任务结束为止
+	for(int i=0;i<3;i++) {
+	    try {
+		System.out.println(cs.take().get());
+	    } catch (InterruptedException e) {
+		e.printStackTrace();
+	    }catch(ExecutionException e) {
+		e.printStackTrace();
+	    }
+	}	
+    }
+}
