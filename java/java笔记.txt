@@ -1,4 +1,5 @@
 调试快捷键/  全局搜索 ctrl+H  建议提示alt+/  删除当前行 ctrl+d   
+垂直选中的快捷键 shift+alt+a
 自动引入需要包ctrl+shift+0  逐行走  :F6  进入当前行的方法 ;F5
 跳出当前方法:f 7  让程序继续执行  f8  误删恢复  ctrl+z   拉下类方法ctrl+0
 提示修改 Ctrl+1   快捷输入get set 函数  source->getter and Setter
