@@ -1,0 +1,30 @@
+//反射  
+/**
+ * 所谓反射，就是根据一个已经实例化了的对象来还原类的完整信息
+ * 用字符串代替类    减少内存的占用    用到类是再将类实例化
+ * @author 26368
+ *
+ */
+public class Inflect {
+	//通过对象获取包名和类名
+	public static void main(String[] args) {
+		//first获取类的方法
+		/*test t=new test();
+		System.out.println(t.getClass().getSimpleName());
+		System.out.println(t.getClass().getName());
+		*/
+		//second
+		//Class<?> c=test.class;
+		//third
+		String str="java.util.HashMap";
+		try {
+			Class<?> c=Class.forName(str);
+			Map m=(Map)c.newInstance();//指向父类  这里必须存在空构造
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+			e.printStackTrace();
+		}
+	}
+}
+class test{
+	
+}
