@@ -1,0 +1,83 @@
+给定一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？找出所有满足条件且不重复的三元组。
+
+注意：答案中不可以包含重复的三元组。
+
+例如, 给定数组 nums = [-1, 0, 1, 2, -1, -4]，
+
+满足要求的三元组集合为：
+[
+  [-1, 0, 1],
+  [-1, -1, 2]
+]
+
+void swap(int& num1, int& num2) {
+	if (num1 == num2) {
+		return;
+	}
+	num1 = num1^num2;
+	num2 = num1^num2;
+	num1 = num1^num2;
+}
+
+
+int parition(vector<int>& num,int left, int right) {	
+	int point = --right;
+	while (left < right) {
+		if (num[left]>num[point]) {//从左边开始发现讯在比基准点大的  开始从右边遍历
+			while (--right&&right > left) {
+				if (num[right] < num[point]) {
+					swap(num[left], num[right]);
+					break;
+				}
+			}
+		}
+		left++;
+	}
+	swap(num[right], num[point]);
+	return right;
+}
+
+void quickSort(vector<int>& num,int left,int right) {
+	if (right-1 <= left) {
+		return;
+	}
+	int temp=parition(num, left, right);	
+	quickSort(num, left, temp);
+	quickSort(num, temp + 1, right);
+}
+vector<vector<int>> threeSum(vector<int>& nums) {
+	vector<vector<int>> v;
+	if (nums.size()<3) {
+		return v;
+	}
+	quickSort(nums,0,nums.size());
+	int left = 0;
+	while (left<nums.size()&&nums[left]<=0) {		
+		if (left > 0 && nums[left] == nums[left - 1]) {
+			left++;
+			continue;
+		}
+		int right = nums.size() - 1;
+        int cursor = left + 1;
+		while (nums[right] >= 0&&nums[right]>=nums[left]/(-2)&&right>left) {
+			if (right != nums.size() - 1 && nums[right] == nums[right + 1]) {
+				right--;
+				continue;
+			}
+			int thirdNum = -(nums[left] + nums[right]);
+			for (cursor; nums[cursor] <= thirdNum&&cursor<right; ++cursor) {
+				if (nums[cursor] == thirdNum) {
+					vector<int> elem;
+					elem.push_back(nums[left]);
+					elem.push_back(nums[cursor]);
+					elem.push_back(nums[right]);
+					v.push_back(elem);
+					break;
+				}
+			}
+			right--;
+		}		
+		left++;
+	}
+	return v;
+}
