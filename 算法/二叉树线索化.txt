@@ -1,0 +1,39 @@
+#include<iostream>
+using namespace std;
+typedef int ElemType;
+
+struct BiThrTree {
+	ElemType data;
+	union{
+		BiThrTree* lChild;//左孩子
+		BiThrTree* lPrior;//左前继
+	};
+	union{
+		BiThrTree* rClild;//右孩子
+		BiThrTree* rPrior;//右前继
+	};
+	bool lTag, rTag;//左右标志 true 代表孩子
+};
+//二叉树线索化
+
+//先初始化pre=树根
+BiThrTree* pre = NULL;
+void inThreading(BiThrTree* p) {
+	if (NULL!=p) {
+		inThreading(p->lChild);
+		if (NULL == p->lChild) {
+			p->lTag = false;
+			p->lPrior = pre;
+		} else p->lTag = true;
+		if (NULL == pre->rClild) {
+			pre->rTag = false;
+			pre->rPrior = p;
+		} else pre->rTag = true;
+		pre = p;
+		inThreading(p->rClild);
+	}
+}
+void init(BiThrTree* p) {
+	pre = p;
+	inThreading(p);
+}
