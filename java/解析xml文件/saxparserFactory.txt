@@ -1,0 +1,80 @@
+package test;
+
+import java.io.IOException;
+import java.io.InputStream;
+
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+
+import org.xml.sax.Attributes;
+import org.xml.sax.SAXException;
+import org.xml.sax.helpers.DefaultHandler;
+
+
+public class Inflect {
+	public static void main(String[] args) {
+		InputStream is=Thread.currentThread().getContextClassLoader().getResourceAsStream("test/1.xml");
+		
+		//获取解析工厂
+		SAXParserFactory factory=SAXParserFactory.newInstance();
+		//从工厂获取解析器
+		SAXParser parser;
+		try {
+			parser = factory.newSAXParser();
+			parser.parse(is, new Handle());
+		} catch (ParserConfigurationException e) {
+			e.printStackTrace();
+		} catch (SAXException e) {
+			e.printStackTrace();
+		}catch(IOException e) {
+			e.printStackTrace();
+		}finally {
+			if(null!=is) {
+				try {
+					is.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}				
+			}
+		}
+		//加载解析文件
+	}
+}
+
+class Handle extends DefaultHandler{
+
+	//文件结尾的通知(即文本已经读取完成)
+	@Override
+	public void endDocument() throws SAXException {
+		super.endDocument();
+	}
+	//接受元素结尾的通知   对应元素读取结束(<head>--</head>)
+	@Override
+	public void endElement(String uri, String localName, String qName) throws SAXException {
+		System.out.print("end-->"+qName);
+		super.endElement(uri, localName, qName);
+	}
+	
+	//文件开始的通知(即文本开始读取)
+	@Override
+	public void startDocument() throws SAXException {
+		super.startDocument();
+	}
+
+	//开始元素开始的通知   元素读取的开始
+	@Override
+	public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
+		System.out.print("start-->"+qName);
+		super.startElement(uri, localName, qName, attributes);
+	}
+
+	//接受元素数据的通知  (<name>dushao</name>)
+	@Override
+	public void characters(char[] ch, int start, int length) throws SAXException {
+		String str=new String(ch,start,length);
+		System.out.print(str);
+		super.characters(ch, start, length);
+	}
+	
+}
