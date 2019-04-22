@@ -1,89 +1,93 @@
+/**
+ä½¿ç”¨è¯¥ç±»çš„éœ€è¦æ³¨æ„    å†™å…¥æ–‡ä»¶çš„objectæ˜¯list  åˆ™è¯»å–çš„æ—¶å€™ä¹Ÿå¾—è¯»åˆ°listä¸­
+å¦‚æœä¸€ä¸ªä¸€ä¸ªå°†å¯¹è±¡å†™å…¥æ–‡ä»¶ä¸­  ä¸èƒ½åªè¯»å‡ºä¸€ä¸ªå¯¹è±¡
+*/
 
-package Thinking;
+package test;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileDescriptor;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.PrintStream;
-import java.util.Scanner;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
-public class objectStream{
-    public static void main(String[] args) {
-	//ÀûÓÃ´òÓ¡Á÷  Ğ´ÈëÎÄ¼şÖĞ
-	/**PrintStream ps=null;
-	try {
-	    ps=new PrintStream(new BufferedOutputStream(
-		    new FileOutputStream(new File("C:\\Users\\26368\\Videos\\Captures\\wo.txt"))));
-	} catch (FileNotFoundException e) {
-	    e.printStackTrace();
-	}
-	ps.println("woaini");
-	ps.close();
-	*/
-	
-	//ÕâÀïÓÃ´òÓ¡Á÷  ¶ÁÈ¡ÎÄ¼şÖĞµÄÊı¾İ
-	/**InputStream is=null;
-	try {
-	    is=new BufferedInputStream(new FileInputStream(new File("C:\\Users\\26368\\Videos\\Captures\\wo.txt")));
-	} catch (FileNotFoundException e) {
-	    e.printStackTrace();
-	}
-	Scanner s=new Scanner(is);
-	System.out.println(s.nextLine());
-	System.out.println(s.nextLine());
-	s.close();
-	*/
-	
-	//½«¿ØÖÆÌ¨»ñµÃ×Ö·û  Ğ´µÀÎÄ¼şÖĞ
-	/**Scanner s=new Scanner(System.in);
-	PrintStream ps=null;
-	try {
-	    ps=new PrintStream(new BufferedOutputStream(new FileOutputStream(new File("C:/Users/26368/Videos/Captures/wo.txt"))));
-	} catch (FileNotFoundException e) {
-	    e.printStackTrace();
-	}	
-	ps.print(s.nextLine());
-	ps.close();
-	s.close();
-	*/
-	
-	//ÀûÓÃÄ¬ÈÏº¯ÊıĞŞ¸ÄÊäÈëµÄÎ»ÖÃ
-	//PrintStream(OutputStream,bool)µÚ¶ş¸ö²ÎÊı  ÊÇ·ñ×Ô¶¯Ë¢ĞÂµ½ÎÄ¼ş
-	/**try {
-	    System.setOut(new PrintStream(new BufferedOutputStream(new 
-	    	FileOutputStream(new File("C:/Users/26368/Videos/Captures/wo.txt"))),true));//
-	} catch (FileNotFoundException e) {
-	    e.printStackTrace();
-	}
-	System.out.print("woshi ");*/
-	//¸Ä»Ø¿ØÖÆÌ¨
-	//System.setOut(new PrintStream(new BufferedOutputStream(new FileOutputStream(FileDescriptor.out))));
-	
-	//Ä£·ÂScanner »ñÈ¡¿ØÖÆÌ¨µÄÊäÈëÊı¾İ
-	BufferedReader br=new BufferedReader(new InputStreamReader(new FileInputStream(FileDescriptor.in)));
-	String buf=null;
-	try {
-	    buf=br.readLine();
-	} catch (IOException e) {
-	    e.printStackTrace();
-	}finally {
-	    if(br!=null) {
+public class Inflect {
+	public static void main(String[] args) {
+		/**Student stu1=new Student("å¼ ä¸‰",001,105,"å±±è¥¿æ™‹ä¸­");
+		Student stu2=new Student("å¼ å››",002,144,"å±±è¥¿æ™‹ä¸­å¤ªåŸ");
+		Student stu3=new Student("å¼ äº”",003,104,"å±±è¥¿æ™‹ä¸­å¤§è‹æ‰“");
+		Student stu4=new Student("å¼ å…­",004,105,"å±±è¥¿æ™‹çš„æ’’æ—¦ä¸­");
+		List<Student> stuList=new ArrayList<Student>();
+		stuList.add(stu1);
+		stuList.add(stu2);
+		stuList.add(stu3);
+		stuList.add(stu4);
+		ObjectOutputStream oos=null;
 		try {
-		    br.close();
+			oos=new ObjectOutputStream(new FileOutputStream(new File("a.txt")));
+			oos.writeObject(stuList);
+			oos.flush();			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
 		} catch (IOException e) {
-		    e.printStackTrace();
+			e.printStackTrace();
+		}finally {
+			if(null!=oos) {
+				try {
+					oos.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}*/
+		
+		List<Student> stuList;
+		ObjectInputStream ois=null;
+		try {
+			ois=new ObjectInputStream(new FileInputStream(new File("a.txt")));
+			stuList=(List<Student>) ois.readObject();
+			System.out.println(stuList.toString());
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}finally {
+			if(null!=ois) {
+				try {
+					ois.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
 		}
-	    }
 	}
-	System.out.println(buf);
-    }
+}
+
+@SuppressWarnings("serial")
+class Student implements java.io.Serializable{
+	String name;
+	int id;
+	int classRoom;
+	String addr;
+	public Student(){
+		
+	}
+	public Student(String name, int id, int classRoom, String addr) {
+		super();
+		this.name = name;
+		this.id = id;
+		this.classRoom = classRoom;
+		this.addr = addr;
+	}
+	@Override
+	public String toString() {
+		return "Student [name=" + name + ", id=" + id + ", classRoom=" + classRoom + ", addr=" + addr + "]";
+	}
+	
 }
