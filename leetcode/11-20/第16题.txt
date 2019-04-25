@@ -79,9 +79,7 @@ int threeSumClosest(vector<int>& nums, int target) {
 			if (sum == target) {
 				return target;
 			}
-			if (temp < target) {
-				break;
-			}		
+					
 		}
 	}	
 	return sum;
