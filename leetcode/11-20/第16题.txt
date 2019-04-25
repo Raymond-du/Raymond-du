@@ -1,0 +1,88 @@
+void swap(int&num1, int& num2) {
+	if (num1 != num2) {
+		num1 = num1^num2;
+		num2 = num1^num2;
+		num1 = num1^num2;
+	}
+}
+
+int parition(vector<int>& nums, int left, int right) {
+	int benchMark =--right;
+	while (right > left) {
+		while (left<right&&nums[left] <= nums[benchMark]) {
+			left++;
+		}
+		while (right>left&&nums[right] >= nums[benchMark]) {
+			right--;
+		}
+		swap(nums[left], nums[right]);
+	}
+	swap(nums[right], nums[benchMark]);
+	return right;
+}
+
+void quickSort(vector<int>& nums,int left,int right) {
+	if ((right-left) <= 1) {
+		return;
+	}
+	int temp=parition(nums, left, right);
+	quickSort(nums, left, temp);
+	quickSort(nums, temp + 1, right);
+}
+
+//在数组中  查找最接近target的数  left和right是查找的范围 
+int findNumClosest(const vector<int>& nums,int left,int right, int target) {
+	//递归结束头
+	if (right == left) {
+		return nums[left];
+	}
+	if (right - left == 1) {
+		return abs(nums[left] - target) < abs(nums[right] - target) ? nums[left] : nums[right];
+	}
+	int midNum = (right - left) / 2+left;
+	if (nums[midNum] == target) {
+		return nums[midNum];
+	} else if(nums[midNum]>target){
+		return findNumClosest(nums, left, midNum, target);
+	} else {
+		return findNumClosest(nums, midNum, right, target);
+	}
+}
+
+int threeSumClosest(vector<int>& nums, int target) {
+	if (nums.size() < 3) {
+		return 0;
+	}
+	//sum是最后的总和,left 左面的索引 lrSum左右两数之和
+	int sum = nums[0]+nums[1]+nums[2],lrSum=0;
+	//先将nums排好序  
+	quickSort(nums, 0, nums.size());
+	//如果能够相加得到target  可以直接返回
+	
+	for (int left = 0; left<nums.size()-2;left++) {
+		if (left>0&&nums[left] == nums[left - 1]) {
+			 continue;
+		} 
+		//如果最小的三个数已经大于target  停止循环
+		int temp = nums[left] + nums[left + 1] + nums[left + 2];
+		sum = abs(sum - target) <= abs(temp - target) ? sum : temp;
+		if (temp >= target) {
+			break;
+		}
+		for (int right = nums.size() - 1; right > left+1; right--) {
+			if (right<nums.size()-1&&nums[right + 1] == nums[right]) {
+				continue;
+			}
+			lrSum = nums[left] + nums[right];
+			temp = nums[left] + nums[right] + findNumClosest(nums, left + 1, right - 1, target - lrSum);
+			sum = abs(sum - target) <= abs(temp - target) ? sum : temp;
+			if (sum == target) {
+				return target;
+			}
+			if (temp < target) {
+				break;
+			}		
+		}
+	}	
+	return sum;
+}
