@@ -1,0 +1,47 @@
+//打开脚本引擎
+		ScriptEngineManager sem=new ScriptEngineManager();
+		//获取指定的脚本引擎  注意字符串参数  如果错误或返回空
+		ScriptEngine engine= sem.getEngineByName("js");
+		
+		//添加变量  添加到该引擎的上下文
+		engine.put("msg", "love");
+		//调用engine.get("对象名")获取对象的内容
+		Object temp=engine.get("msg");
+		System.out.println("msg对象是"+temp);
+		/**
+		//js代码  可以创建一个js的文件
+		String jsCode="function sum(a,b) {var sum=a+b; return sum;}";
+		
+		try {
+			//执行指定的脚本
+			engine.eval(jsCode);
+			//取得调用接口
+			Invocable invocable=(Invocable)engine;
+			//执行脚本中定义的方法
+			Object value=invocable.invokeFunction("sum", new Object[] {10,20});
+			System.out.println(value);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		*/
+		/**
+		//js导入java包执行java函数  需要注意eclipse没有加入js模块不能够使用importPackage
+		String jsCode="var list=java.util.Arrays.asList([\"dujinheng\",\"houyanjing\",\"love\"]) ";
+		try {
+			engine.eval(jsCode);
+			List<String> list=(List<String>)engine.get("list");
+			for (String temp : list) {
+				System.out.println(temp);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}*/
+		
+		//执行js文件    
+		URL url=Inflect.class.getClassLoader().getResource("test.js");
+		try {
+			BufferedReader br=new BufferedReader(new FileReader(url.getPath()));
+			engine.eval(br);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
