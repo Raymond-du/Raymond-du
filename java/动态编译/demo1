@@ -1,0 +1,36 @@
+//获取java的编译工具  需要将jdk改成jre 再将tool放到gre的目录下
+		/*JavaCompiler compiler=ToolProvider.getSystemJavaCompiler();
+		if(null==compiler) {
+			System.out.println("err");
+		}
+		int result=compiler.run(System.in,System.out,System.err,"C:\\Users\\26368\\eclipse-workspace\\FIrst_Software\\src\\test\\test01.java");
+		if(0==result) {
+			System.out.println("运行成功");	
+		}*/
+		
+		String str="public class HelloWorld {public static void main(String[] args) {System.out.println(\"HelloWorld\");}}";
+		//创建临时文件
+		File f=new File("HelloWorld.java");
+		Writer w=null;
+		try {
+			f.createNewFile();
+			w=new BufferedWriter(new OutputStreamWriter(new FileOutputStream(f)));
+			w.write(str);
+			w.flush();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}finally {
+			if(null!=w) {
+				try {
+					w.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		JavaCompiler compiler=ToolProvider.getSystemJavaCompiler();
+		int result=compiler.run(null,null,null,f.getPath());
+		System.out.println(f.getAbsolutePath());
+		System.out.println(0==result?"编译成功":"编译失败");
+		
+		f.deleteOnExit();
