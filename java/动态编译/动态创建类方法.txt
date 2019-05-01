@@ -1,0 +1,25 @@
+//使用之前先加入Javassist包文件  在网上下载
+
+public static void main(String[] args){
+    //打开类池
+    Classpool pool=Classpool.getDefault();
+    CtClass cc=pool.get("test.java");
+    //第一个为返回值  第二个为函数名  第三个参数  第四个类的类
+    CtMethod m=new CtMethod(CtClass.intType,"add",new CtClass[]{CtClass.intType,CtClass.intType},cc);
+    //添加修饰符
+    m.setModifiers(Modifier.Public);
+    //添加函数体 这里的$1+$2  代表第一个参数和第二个参数  $0代表this
+    m.setBody("System.out.println($1+$2) return $1+$2");
+    //将函数添加到类里
+    cc.addMethod(m);
+    
+    //通过反射调用该函数
+    Class clz=cc.toClass();
+    //创建类对象   实例化对象
+    Object obj=clz.newInstance();
+    //获取类中的add方法
+    Method method=clz.getDeclaredMethod("add",int.class,int.class);
+    //调用方法
+    Object value=method.invoke(obj,200,300);
+    
+}
