@@ -1,0 +1,122 @@
+package test;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+
+/**
+ * 类加载器的练习
+ * 默认存在三种类加载机制
+ * 1.引导类加载器  用c++开发的  原生代码实现的
+ * 2.扩展类加载器  	用来加载类扩展库
+ * 3.应用程序加载器  根据具体的路径加载class文件
+ * 4.可以自定义加载器(解密加载器  对加密的class文件进行解密并加载 
+ * 	 网络类加载器对网上的类进行加载)
+ * @author Raymond-du
+ *
+ */
+public class Inflect {
+	public static void main(String[] args) {
+		/**
+		//先将一个class文件加密处理
+		//加密的文件
+		File tagFile=new File("C:/Users/26368/eclipse-workspace/FIrst_Software/src/HelloWorld.class");
+		OutputStream os=null;
+		InputStream is=null;
+		try {
+			//创建该文件
+			tagFile.createNewFile();
+			os=new BufferedOutputStream(new FileOutputStream(tagFile));
+			is=new BufferedInputStream(new FileInputStream("C:/Users/26368/eclipse-workspace/FIrst_Software/HelloWorld.class"));
+			int temp=0;
+			//每次读入一个字节
+			while(-1!=(temp=is.read())) {
+				os.write(temp^(-1));
+			}
+			os.flush();
+		}  catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+    			if(null!=os) {
+    				os.close();
+    			}
+    			if(null!=is) {
+    				is.close();
+    			}
+			}catch (Exception e){
+				e.printStackTrace();
+			}
+		}
+		*/
+		ClassLoader loader=new DeCodeClassLoader("C:/Users/26368/eclipse-workspace/FIrst_Software/src");
+		Class<?> c=null;
+		try {
+			c = loader.loadClass("HelloWorld");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		System.out.println("加载成功"+c);
+	}
+}
+
+class DeCodeClassLoader extends ClassLoader{
+	//指向根目录
+	private String rootDir;
+	public DeCodeClassLoader(String dir){
+		this.rootDir=dir;
+	}
+
+	@Override
+	protected Class<?> findClass(String name) throws ClassNotFoundException {
+		Class<?> c=findLoadedClass(name);
+		if(null!=c) {
+			return c;
+		}else {
+			byte[] data=getClassData(name);
+			c=defineClass(name,data, 0, data.length);
+		}
+		
+		return c;
+	}
+	//获取class文件字节码
+	private byte[] getClassData(String name) {
+		ByteArrayOutputStream baos=new ByteArrayOutputStream();
+		InputStream is=null;
+		try {
+			is = new BufferedInputStream(new FileInputStream(rootDir+'/'+name+".class"));
+			int temp=0;
+			while(-1!=(temp=is.read())) {
+				//这里进行解密
+				baos.write(temp^(-1));
+			}
+			baos.flush();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+    			if(null!=baos) {
+    				baos.close();
+    			}
+    			if(null!=is) {
+    				is.close();
+    			}
+			}catch (Exception e){
+				e.printStackTrace();
+			}
+		}
+		
+		return baos.toByteArray();
+	}
+}
+
+
+
