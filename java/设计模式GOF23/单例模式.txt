@@ -1,0 +1,105 @@
+package test;
+/**
+ * 单例设计模式(五种单例模式实现的方式)
+ * 由于单例模式只生成一个实例,减少了系统性能的开销,当一个对象的产生需要比较
+ * 多的资源.如读取配置\产生其他的依赖对象时,则可以通过在应用启动时直接产生一个
+ * 单例对象,然后永久驻留内存的方式来解决
+ * 单例模式可以在系统设置全局的访问点,优化环境共享资源访问,例如可以设计一个单例类
+ * 负责所有的数据表的映射
+ * 
+ * 
+ * 常用
+ * 1.饿汉式(线程安全,调用效率高,但是不支持延时加载)
+ * 2.懒汉式(线程安全,调用效率不高,但是支持延时加载)
+ * 较常用
+ * 3.双重检测锁式(由于JVM底层内部模型原因,偶尔出现问题,不建议使用)
+ * 4.静态内部类式(线程安全,调用效率高,支持延时加载)
+ * 5.枚举单例(线程安全,调用效率高,不能延时加载)
+ * @author Raymond-du
+ *
+ */
+//饿汉式  (3部) 
+//饿汉式代码中,static变量会在类加载时初始化,此时不会涉及多个线程对象访问该对象的
+//问题.虚拟机保证只会装载一次.(可以省略掉了synchronized)
+public class Demo {
+	//私有化  类初始化时,立即加载(没有延时加载的优势)这个对象
+	private static final Demo instance=new Demo();
+	//将构造函数私有
+	private Demo() {
+	}
+	//公开一个获取对象的函数
+	public static Demo getInstance() {
+		return instance;
+	}
+	public static void main(String[] args) {
+		/**Demo03 d=null;
+		System.out.println(d);
+		d=Demo03.getInstance();
+		System.out.println(d);*/
+		Demo05 d=Demo05.INSTANCE;
+		System.out.println(d.name);
+	}
+}
+//懒汉式  由于同步的原因所以并发效率会降低
+class Demo01{
+	private static Demo01 instance=null;
+	private Demo01() {
+	}
+	//这里需要添加synchronized关键字避免线程同时调用创建两个对象
+	//调用getINstance时才进行加载改类  所以可以延时加载(资源利用率较高)
+	public static synchronized Demo01 getInstance() {
+		if(instance==null) {
+			instance=new Demo01();
+		}
+		return instance;
+	}
+}
+//双重检测锁实现(不建议使用易发生错误)
+class Demo02{
+	private static Demo02 instance=null;
+	private Demo02(){}
+	public static Demo02 getInstance() {
+		if(instance==null) {
+			Demo02 temp=null;
+			synchronized (Demo02.class) {
+				temp=instance;
+				if(temp==null) {
+					synchronized(Demo02.class) {
+						if(temp==null) {
+							temp=new Demo02();
+						}
+					}
+					instance=temp;
+				}
+			};
+			
+		}
+		return instance;
+	}
+}
+//静态内部类方式 (静态方法,且时懒汉式加载)
+//只有调用了getInstance才会加载静态内部类  保证了线程安全和具备延时加载的优势
+class Demo03{
+	private static class Demo02ClassInstance{
+		private static final Demo03 instance=new Demo03();
+	}
+	private Demo03() {}
+	public static Demo03 getInstance() {
+		return Demo02ClassInstance.instance;
+	}
+}
+//枚举单例模式 可以防止放射的加载和反序列化
+enum Demo05{
+	INSTANCE;
+	String name="du";
+	//也可以在这里实现一些操作
+	public void setName(String name) {
+		this.name=name;
+	}
+}
+
+
+
+
+
+
