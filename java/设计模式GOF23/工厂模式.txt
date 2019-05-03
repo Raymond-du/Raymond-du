@@ -1,0 +1,52 @@
+package test;
+
+/**
+ * 工厂模式	
+ * 一般用简单工厂模式
+ * 工厂方法模式  较复杂一般不用  (思想:将工厂作为一个接口,创建各类汽车的工厂继承自工厂接口
+ * ,客户调用不同的工厂接口来实现对对象的实例化)
+ * @author raymond-du
+ *
+ */
+//简单工厂模式
+public interface Car {
+	public void run() ;
+	public static void main(String[] args) {
+		//工厂模式测试(普通模式下  想要那款汽车直接new)
+		Car c=CarFactory.getCar("奔驰");
+		c.run();
+	}
+}
+
+class CarFactory{
+	private CarFactory() {}
+	public static Car getCar(String name) {
+		if(name.equals("奥迪")) {
+			return new Audi();
+		}else if(name.equals("奔驰")){
+			return new Benz();
+		}else if(name.equals("比亚迪")){
+			return new Byd();
+		}else {
+			return null;
+		}
+	}
+}
+class Byd implements Car{
+	@Override
+	public void run() {
+		System.out.println("比亚迪run");
+	}	
+}
+class Benz implements Car{
+	@Override
+	public void run() {
+		System.out.println("奔驰run");
+	}	
+}
+class Audi implements Car{
+	@Override
+	public void run() {
+		System.out.println("奥迪run");
+	}	
+}
