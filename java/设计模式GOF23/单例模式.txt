@@ -101,5 +101,44 @@ enum Demo05{
 
 
 
+package test;
 
+import java.io.ObjectStreamException;
+import java.lang.reflect.Constructor;
+/**
+ *单例模式的bug  反射和序列化会破坏单列模式 
+ */
+public class test {
+	public static void main(String[] args) throws Exception {
+		//普通创建的方式不会破坏单例模式
+		Demo demo01=Demo.getInstance();
+		Demo demo02=Demo.getInstance();
+		System.out.println(demo01.hashCode());
+		System.out.println(demo02.hashCode());
+		//利用反射破坏了单例模式
+		Class<Demo> clz=(Class<Demo>) Class.forName("test.Demo");
+		Constructor<Demo> constructor=clz.getDeclaredConstructor(null);
+		constructor.setAccessible(true);
+		Demo demo03= constructor.newInstance();
+		System.out.println(demo03.hashCode());
+	}
+}
+
+class Demo{
+	private static Demo instance = new Demo();
+	private Demo() {
+		//在私有构造器中添加代码  防止反射破坏
+		if(instance!=null) {
+			throw new RuntimeException();
+		}
+	}
+	public static Demo getInstance() {
+		return instance;
+	}
+	
+	//在反序列化的时候  如果已经存在该对象则直接返回instance
+	private Object readResolve() throws ObjectStreamException{
+		return instance;
+	}
+}
 
