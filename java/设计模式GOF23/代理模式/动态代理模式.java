@@ -22,11 +22,11 @@ public class Test {
 	}
 }
 
-//用该类可以动态的管理改类 可以实现对源代码的修改
+//用该类可以动态的管理改类 可以实现对源代码的修改  可以假设不知道对象类型   直接用obj代替
 class StarHandler implements InvocationHandler{
-	Star star=null;
+	Object obj=null;
 	public StarHandler(Star realStar) {
-		this.star=realStar;
+		this.obj=realStar;
 	}
 	
 	//第一个参数是执行的对象 第二个参数是对象的方法  第三个参数是对象的参数数组\
@@ -35,7 +35,8 @@ class StarHandler implements InvocationHandler{
 	public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
 		if(method.getName().equals("sing")) {
 			System.out.println("&&&&&&&");
-			star.sing();
+			//这里无返回值  返回null
+			return method.invoke(obj, null);
 		}
 		//如果函数有返回值也可以直接在这里返回
 		return null;
