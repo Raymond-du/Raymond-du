@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<head>
+    
+    <combination>
+        <Kind>笔记本</Kind>
+        <Brand>联想</Brand>
+        <Count>100</Count>
+    </combination>
+    <combination>
+        <Kind>笔记本</Kind>
+        <Brand>戴尔1</Brand>
+        <Count>130</Count>
+    </combination>
+    <combination>
+        <Kind>台式机</Kind>
+        <Brand>联想</Brand>
+        <Count>140</Count>
+    </combination>
+    <combination>
+        <Kind>台式机</Kind>
+        <Brand>戴尔</Brand>
+        <Count>150</Count>
+    </combination>
+    
+</head>
