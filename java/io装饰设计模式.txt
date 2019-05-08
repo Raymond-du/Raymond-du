@@ -5,19 +5,29 @@
   组合:属性整体与部分一致的生命周期(人与大脑)
 3.继承:父子类的关系
 4,实现:接口与实现类的关系
-public class Voice{
-  private int voice=10;
-  public int say(){
-    System.out.println("声音大小"+voice);
+
+io装饰模式  例如 BufferedInputStream 装饰了InputStream
+BufferedInputStream 继承自InputStream 并包含InputStream对象 实现对InputStream的包装
+public interface InputStream{
+  public String read();
+}
+
+public class FileInputStream implements InputStream{
+  private File file=null;
+  public FileInputStream(File file){this.file=file}  
+  @override
+  public String read(){
+    System.out.println("无缓冲输出");
   }
 }
 
-public class Amplifier{//对voice包装  放大voice的功能
-  private Voice voice;
-  public Amplifier (Voice voice){
-    this.voice=voice;
-  }
-  public int say(){
-    System.out.println("声音大小"+voice*10);
+public class BufferedInputStream implements InputStream{
+  private InputStream is;
+  public BufferedInputStream(InputStream is){this.is=is}
+  @override
+  public String read(){
+    is.read();
+    System.out.println("切换成有缓冲模式");
   }
 }
+
