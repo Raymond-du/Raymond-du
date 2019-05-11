@@ -42,7 +42,9 @@ public class Demo {
 }
 //懒汉式  由于同步的原因所以并发效率会降低
 class Demo01{
-	private static Demo01 instance=null;
+	
+	//避免指令重排
+	private static volatile DoubleCheckedLocking instance ;
 	private Demo01() {
 	}
 	//这里需要添加synchronized关键字避免线程同时调用创建两个对象
