@@ -20,6 +20,10 @@ import java.sql.Connection;
 
 //实现sql大文本的数据保存读取和写入 CLOB  字符串写入  BLOB  二进制文本写入
 //sql添加text文本  可以写入6万多个字符  
+//TINYTEXT最大长度是255
+//TEXT最大长度是65535
+//MEDIUMTEXT最大长度是16777215
+//LONGTEXT最大长度是4294967295  4G
 public class Test{
 	public static long DateFormat2Long(String dateFormat) {
 		DateFormat format=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
