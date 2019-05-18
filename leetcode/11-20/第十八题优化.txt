@@ -1,0 +1,77 @@
+vector<vector<int>> fourSum(vector<int>& nums, int target) {
+        vector<vector<int>> res;
+        vector<int> out;
+        int size=nums.size();
+        if(size<4){
+            return res;
+        }
+        sort(nums.begin(),nums.end());
+        if(nums.front() >0 || nums.back() <0)
+            return res;
+        //第一个值
+        for(int i=0;i<nums.size()-3;i++)
+        {
+            //判断特殊情况
+            if(i>0 && nums[i]==nums[i-1])
+                continue;
+            if(nums[i]+nums[i+1]+nums[i+2]+nums[i+3]>target){
+                break;
+            }
+            if(nums[i]+nums[size-1]+nums[size-2]+nums[size-3]<target){
+                continue;
+            }
+            
+            //第二个值 i后的值
+            for(int j=i+1;j<nums.size()-2;j++)
+            {
+                //特殊情况
+                if(j-i>1 && nums[j]== nums[j-1])
+                    continue;
+                if(nums[i] + nums[j] + nums[j + 1] + nums[j + 2] > target)
+                {
+                    break;
+                }
+                if(nums[i] + nums[j] + nums[size - 2] + nums[size - 1] < target)
+                {
+                    continue;
+                }
+                
+                //如果所有的sum都大于target则退出该循环
+                bool bl=false,br=false;
+                int fix=target-nums[i]-nums[j];
+                int l=j+1,r=nums.size()-1;
+                while(l<r)
+                {
+                    if(nums[l] + nums[r] == fix)
+                    {
+                       
+                    res.push_back(vector<int>{nums[i],nums[j],nums[l],nums[r]});
+                            
+                       while(l< r && nums[l]==nums[l+1])
+                           l++;
+                        while(l<r && nums[r]==nums[r-1])
+                            r--;
+                        l++;
+                        r--;
+                        bl=true;
+                        br=true;
+                        
+                    }
+                    else if( nums[l]+ nums[r] > fix){
+                         r--;
+                        bl=true;
+                    }
+                        
+                    else{
+                        l++;
+                        br=true;
+                    }
+                        
+                }
+                 if(br==false&&true==bl){
+                    break;
+                }
+            }
+        }   
+        return res;
+    }
