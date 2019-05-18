@@ -3,6 +3,8 @@ package SORM;
 import java.util.List;
 import java.util.Map;
 
+import SORM.ColumnInfo;
+
 /**
  * 存储表结构的信息
  * @author Raymond-du

@@ -3,6 +3,8 @@ package SORM;
 import java.sql.ResultSet;
 import java.sql.Types;
 
+import SORM.TypeConvertor;
+
 /**
  * 负责java类型的数据类型和数据路类型的互相转换
  * @author Raymond-du

@@ -12,6 +12,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import SORM.DBconnectionPool;
+import SORM.JDBCUtil;
+import SORM.ReflectUtil;
+import SORM.TableContext;
+import SORM.TableInfo;
+
 /**
  * 负责查询(对外提供服务的核心类)
  * @author Raymond-du
@@ -81,6 +87,7 @@ public interface Query {
 	 */
 	public Number queryNumber(String sql,Object[] params);	
 }
+@SuppressWarnings("all")
 class MysqlQuery implements Query{
 	private DBconnectionPool conPool=new DBconnectionPool();
 	//这里如果是CLOb和BlOb  就不能使用setOBject
@@ -118,7 +125,7 @@ class MysqlQuery implements Query{
 		//DML语句
 		StringBuilder sql=new StringBuilder("insert into "+table.gettName()+" (");
 		//获取类中的属性列表  这里把控也放入里面
-		Field[] fields=obj.getClass().getFields();
+		Field[] fields=obj.getClass().getDeclaredFields();
 		for(Field field:fields) {
 			String fieldName=field.getName();
 			Object o=ReflectUtil.invokeGet(fieldName, obj);
@@ -173,7 +180,6 @@ class MysqlQuery implements Query{
 		System.out.println(sql.toString());
 		return executeDML(sql.toString(), fieldList.toArray());
 	}
-
 	@Override
 	public List queryRows(String sql, Class clazz, Object[] params) {
 		Connection con=conPool.getCon();

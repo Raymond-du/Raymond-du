@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.Properties;
 
+import SORM.Configuration;
+
 /**
  * 根据配置信息维持对象的管理(增加连接池的功能)
  * @author Raymond-du

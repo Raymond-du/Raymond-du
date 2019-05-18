@@ -7,12 +7,20 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import SORM.ColumnInfo;
+import SORM.DBManager;
+import SORM.JavaFileUtil;
+import SORM.MysqlTypeConvertor;
+import SORM.StringUtils;
+import SORM.TableInfo;
+
 /**
  * 负责获取管理数据库所有表结构和类结构的关系,并可以根据表结构生成类结构
  * 获取所有的表(可能存在多个表) 添加到tables中
  * @author Raymond-du
  *
  */
+@SuppressWarnings("all")
 public class TableContext {
 	//表名为key,表信息为value
 	private static Map<String,TableInfo> tables=new HashMap<>();
@@ -57,13 +65,8 @@ public class TableContext {
 				//去唯一主键 方便使用.如果是联合主键 则为空     这里先测试唯一主键
 				if(ti.getPriKey().size()>0) {
 					ti.setOnlyPriKey(ti.getPriKey().get(0));
-				}
-				updateJavaFile();
-				//加载po类的class对象便于重用,提高效率
-				loadPoTables();
-				
+				}		
 			}
-			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -97,16 +100,6 @@ public class TableContext {
 			}
 		}
 	}
-	
-	/**
-	 *根据表结构,跟新指定po包的po类结构
-	 *根据配置文件中的,:srcPath=C:/Users/26368/eclipse-workspace/FIrst_Software/src
-	public static void updataPO() {
-		Map<String,TableInfo> tables=TableContext.getTableInfo();
-		for(TableInfo t:tables.values()) {
-			JavaSRCUtil.createJavaPOFlie(t,new MySqlTypeConvertor());
-		}
-	}*/
 	
 	
 }

@@ -1,7 +1,11 @@
 package SORM;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.List;
+
+import SORM.DBManager;
+import SORM.JDBCUtil;
 
 /**
  * 连接池  提高效率
@@ -10,7 +14,7 @@ import java.util.List;
  */
 public class DBconnectionPool {
 	//连接池list
-	private List<Connection> conList=null;
+	private List<Connection> conList=new ArrayList<>();
 	
 	public static final int MAX_CON=10;
 	public DBconnectionPool() {

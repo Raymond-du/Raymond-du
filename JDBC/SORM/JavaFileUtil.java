@@ -1,25 +1,19 @@
 package SORM;
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.ByteArrayInputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.Reader;
-import java.io.Writer;
-import java.sql.Clob;
-import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import po.T_user;
+import SORM.ColumnInfo;
+import SORM.DBManager;
+import SORM.JDBCUtil;
+import SORM.JavaFieldGetSet;
+import SORM.StringUtils;
+import SORM.TableInfo;
+import SORM.TypeConvertor;
 
 /**
  * 封装了生成java文件(源代码)常用操作
@@ -41,7 +35,7 @@ public class JavaFileUtil {
 		String javaType=convertor.datebaseType2JavaType(ci.getdataType());
 		JavaFieldGetSet jfgs=new JavaFieldGetSet();
 		//public 类型  名称
-		jfgs.setFieldSource("\tpublic "+javaType+BLACK+ci.getName()+SEMICOLON);
+		jfgs.setFieldSource("\tprivate "+javaType+BLACK+ci.getName()+SEMICOLON);
 		//类型 get名称 (){}
 		jfgs.setGetFieldSource("\t"+javaType+BLACK+"get"+StringUtils.FirstChar2Uppercase(ci.getName())
 				+"(){\n\t\treturn"+BLACK+ci.getName()+SEMICOLON+"\n\t}");
@@ -104,13 +98,4 @@ public class JavaFileUtil {
 		}
 	}	
 	
-	public static void main(String[] args) {
-		/**
-		Map<String,TableInfo>tables=TableContext.getTableInfo();
-		Query query=new MysqlQuery();
-		String sql="select * from t_user where id=?";
-		T_user obj=(T_user)query.queryUniqueRow(sql,T_user.class, new Object[]{8});
-		System.out.println(obj.getUsername());*/
-		TableContext.updateJavaFile();
-	}
 }

@@ -2,11 +2,14 @@ package SORM;
 
 import java.lang.reflect.Method;
 
+import SORM.StringUtils;
+
 /**
  * 封装了反射常用的操作
  * @author Raymond-du
  *
  */
+@SuppressWarnings("all")
 public class ReflectUtil {
 	//利用反射获取需要get的对象
 	/**
