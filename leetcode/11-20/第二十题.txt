@@ -1,0 +1,91 @@
+给定一个只包括 '('，')'，'{'，'}'，'['，']' 的字符串，判断字符串是否有效。
+
+有效字符串需满足：
+
+左括号必须用相同类型的右括号闭合。
+左括号必须以正确的顺序闭合。
+注意空字符串可被认为是有效字符串。
+
+    typedef char ElemType;
+    struct StackNode {
+        ElemType data;
+        StackNode* pre;
+        StackNode* next;
+        StackNode() :pre(NULL),next(NULL) {}
+    };
+
+    struct Stack {
+        StackNode* node;
+        StackNode* pLast;	
+        int size;
+        Stack() : node(NULL), pLast(NULL),size(0) {}
+    };
+
+
+    Stack* initStack() {
+        Stack* stack = new Stack();
+        return stack;
+    }
+
+    void Push(Stack* stack, ElemType data) {
+        if (stack != NULL) {
+            StackNode* node = new StackNode();
+            node->data = data;
+            node->pre = stack->pLast;
+            if (stack->size == 0) {
+                stack->node = node;
+            } else {
+                stack->pLast->next = node;
+            }
+            stack->pLast = node;
+            stack->size++;
+        }
+    }
+
+    ElemType Pop(Stack* stack) {
+        if (stack != NULL) {
+            if (stack->size <= 0) {
+                return NULL;
+            }
+            StackNode * node = stack->pLast;
+            ElemType data =node->data;
+            stack->pLast = stack->pLast->pre;
+            stack->size--;
+            delete node;
+            return data;
+        }
+        return NULL;
+    }
+
+    bool hasElem(Stack* stack) {
+        return stack->size <= 0 ? false : true;
+    }
+    bool isMatch(char c1, char c2) {
+        switch (c1) {
+        case '(':
+            return c2 == ')' ? true : false;
+        case '[':
+            return c2 == ']' ? true : false;
+        case '{':
+            return c2 == '}' ? true : false;
+        default:
+            return false;
+        }
+    }
+
+    bool isValid(string s) {
+        Stack* stack = initStack();
+        for (int i = 0; i<s.length(); i++) {
+            if (s[i] == '{' || s[i] == '[' || s[i] == '(') {
+                Push(stack, s[i]);
+            }if (s[i] == '}' || s[i] == ']' || s[i] == ')') {
+                if (!hasElem(stack) || !isMatch(Pop(stack),s[i])) {
+                    return false;
+                }
+            }
+        }
+        if (hasElem(stack)) {
+            return false;
+        }
+        return true;
+    }
