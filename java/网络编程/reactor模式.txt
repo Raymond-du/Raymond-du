@@ -1,0 +1,147 @@
+package po;
+
+import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.nio.ByteBuffer;
+import java.nio.channels.ClosedChannelException;
+import java.nio.channels.SelectionKey;
+import java.nio.channels.Selector;
+import java.nio.channels.ServerSocketChannel;
+import java.nio.channels.SocketChannel;
+import java.util.Iterator;
+
+class Test{
+	public static void main(String[] args) throws Exception {
+		Reactor reactor=new Reactor(1214);
+		reactor.run();
+	}
+}
+//测试reactor模式
+class Reactor implements Runnable{
+	//创建多路复用器	
+	final Selector selector;
+	//创建一个服务端的通道
+	final ServerSocketChannel serverChannel;
+	
+	//构造函数绑定端口
+	Reactor(int port) throws IOException{
+		serverChannel=ServerSocketChannel.open();
+		selector=Selector.open();
+		
+		serverChannel.bind(new InetSocketAddress(port));
+		serverChannel.configureBlocking(false);
+		//注册accept消息
+		SelectionKey sk=serverChannel.register(selector, SelectionKey.OP_ACCEPT);
+		//将一个对象和该消息对应起来  使用attachment获取消息对应的对象
+		sk.attach(new Acceptor());
+	}
+	
+	public void run() {
+		try {
+			while(!Thread.interrupted()) {
+				//阻塞模式
+				selector.select();
+				//遍历消息队列
+				Iterator<SelectionKey> it=selector.selectedKeys().iterator();
+				while(it.hasNext()) {
+					//分发消息
+					dispatch(it.next());
+					it.remove();
+				}
+			}
+		}catch(Exception e) {
+			
+		}finally {
+			if(serverChannel!=null) {
+				try {
+					serverChannel.close();
+				} catch (IOException e) {
+				}
+			}
+			if(selector!=null) {
+				try {
+					selector.close();
+				} catch (IOException e) {
+				}
+			}
+			
+		}
+	}
+	class Acceptor implements Runnable{
+		public void run() {
+			try {
+				SocketChannel clientChannel=serverChannel.accept();
+				if(clientChannel!=null) {
+					new Handler(selector,clientChannel);
+				}
+			}catch(Exception e) {
+				
+			}
+		}
+	}
+	void dispatch(SelectionKey sk) {
+		Runnable r=((Runnable) sk.attachment());
+		if(r!=null) {
+			r.run();
+		}
+	}
+}
+
+class Handler{
+	private final SelectionKey sk;
+	private final SocketChannel clientChannel;
+	//在recver的函数中处理接受的数据
+	private final Recver recver=new Recver();
+	//在sender的类中处理发送的数据	
+	private final Sender sender=new Sender();
+	
+	ByteBuffer inputBuf=ByteBuffer.allocate(64);
+	ByteBuffer outputBuf=ByteBuffer.allocate(64);
+	
+	public Handler(Selector selector,SocketChannel clientChannel) throws Exception {
+		this.clientChannel=clientChannel;
+		clientChannel.configureBlocking(false);
+		this.sk= clientChannel.register(selector,0);
+    	
+		sk.attach(recver);
+    	//将read 设置为感兴趣的事件 才可以多次read
+    	sk.interestOps(SelectionKey.OP_READ);    	
+	}
+	class Recver implements Runnable{
+		public void run() {
+			try {
+				inputBuf.clear();
+				if(-1==clientChannel.read(inputBuf)) {
+					clientChannel.close();
+					System.out.println("连接已断开");
+					return ;
+				}
+				
+				inputBuf.flip();
+				System.out.println(new String(inputBuf.array()));
+				
+				sk.attach(sender);
+				//添加感兴趣的事件
+				sk.interestOps(SelectionKey.OP_WRITE|SelectionKey.OP_READ);
+				//停止select阻塞  立即执行write
+				sk.selector().wakeup();
+			} catch (Exception e) {
+			}
+		}
+	}
+	class Sender implements Runnable{
+		public void run() {
+			outputBuf.clear();
+			outputBuf.put("已经收到消息".getBytes());
+			
+			outputBuf.flip();
+			try {
+				clientChannel.write(outputBuf);
+				sk.attach(recver);
+				sk.interestOps(SelectionKey.OP_READ);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+}
