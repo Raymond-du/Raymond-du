@@ -1,0 +1,59 @@
+2019-09-06 12-49-00: run server
+2019-09-06 13:33:36: run server
+2019-09-06 13:34:28: run server
+2019-09-06 13:37:14: run server
+2019-09-06 13:41:01: run server
+2019-09-06 13:41:13: connection-> ip: 127.0.0.1 port: 41262
+2019-09-06 13:43:00: run server
+2019-09-06 16:51:03: run server
+2019-09-06 16:51:06: connection-> ip: (null) port: 42730
+2019-09-06 16:58:26: run server
+2019-09-06 16:58:29: connection-> ip: (null) port: 47038
+2019-09-06 17:00:17: run server
+2019-09-06 17:00:29: connection-> ip: ::10.0.4.190 port: 47052
+2019-09-06 17:00:40: connection-> ip: :: port: 42752
+2019-09-06 19:01:00: run server
+inet_ntop ipv6 error
+2019-09-06 19:01:04: connection-> 
+2019-09-06 19:07:16: run server
+2019-09-06 19:08:00: connection-> ip: ::600:0:1000:0 port: 47160
+2019-09-06 19:08:34: connection-> ip: ::1 port: 42858
+2019-09-06 19:11:19: connection-> ip: ::1 port: 42862
+2019-09-06 19:14:37: connection-> ip: ::ffff:127.0.0.1 port: 47168
+2019-09-06 19:16:33: run server
+2019-09-06 19:16:57: connection-> ip: ::600:0:1000:0 port: 47178
+2019-09-06 19:24:35: run server
+2019-09-06 19:25:58: connection-> ip: ::600:0:1000:0 port: 47196
+2019-09-06 19:26:13: connection-> ip: ::ffff:127.0.0.1 port: 47198
+2019-09-06 19:26:40: connection-> ip: ::ffff:127.0.0.1 port: 47200
+2019-09-06 19:26:59: connection-> ip: ::1 port: 42898
+2019-09-06 19:27:04: connection-> ip: ::1 port: 42900
+2019-09-06 19:27:07: connection-> ip: ::1 port: 42902
+2019-09-06 19:27:23: connection-> ip: ::ffff:127.0.0.1 port: 47208
+2019-09-06 19:27:36: connection-> ip: ::ffff:127.0.0.1 port: 47210
+2019-09-06 19:27:50: run server
+2019-09-06 19:27:55: run server
+2019-09-06 19:30:20: run server
+2019-09-06 19:30:38: connection-> ip: ::600:0:1000:0 port: 47216
+2019-09-06 19:30:53: connection-> ip: ::ffff:127.0.0.1 port: 47218
+2019-09-06 19:33:58: run server
+::78b8:1aa7:cb7f:0
+::ffff:127.0.0.1
+::ffff:127.0.0.1
+2019-09-06 19:50:01: run server
+2019-09-06 19:50:21: connect-> ip::ffff:127.0.0.1 port: 47248
+2019-09-06 19:51:09: connect-> ip::ffff:192.168.23.128 port: 45468
+2019-09-06 19:51:20: connect-> ip::1 port: 42950
+2019-09-07 10:09:11: run server
+2019-09-07 10:09:39: connect-> ip::1 port: 38070
+recv->::1: 
+	nihk
+recv->::1: 
+	iloveyou
+recv->::1: 
+	nihk
+2019-09-07 10:13:13: run server
+2019-09-07 10:13:20: connect-> ip::1 port: 38088
+2019-09-07 10:13:29: recv->::1: 
+	nihk
+2019-09-07 10:13:38: broke-> ::1
