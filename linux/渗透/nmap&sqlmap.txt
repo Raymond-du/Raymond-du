@@ -1,0 +1,19 @@
+使用 nmap+ip即可查询ip地址开放的端口
+nmap -p 端口号 ip地址  既可查询的指定的端口(-p指定端口号)
+nmap 192.168.0.1-192.168.0.10 即可查询这个范围的ip地址开放的端口
+nmap 192.168.0.1/24 既可以查询一个系段的ip地址
+nmap -iL 1.txt 可以查询1.txt 中的ip地址
+使用 nmap -sV ip 即可查询到服务的版本信息
+nmap -O ip 可以查看系统的版本信息
+-Pn 将主机视为在线 （png不通的情况下）
+-sC 脚本扫描 
+-traceroute 跟踪路由
+-A 强力检测 （包含 -sV -O -sC -traceroute）
+-sT tcp连接扫描
+-sS SYN扫描 半开连接扫描
+-sF FIN扫描
+-T 0-5 扫描的时间等级
+http://www.kfzhongzhou.com/cyjb_xx.asp?id=13
+
+
+sqlmap 使用文件扫描 将请求的字段复制到文件中 使用 -r命令

