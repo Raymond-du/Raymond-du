@@ -1,1 +1,44 @@
-测试
+测试用例
+TEST(test, add) {
+  EXPECT_EQ(add(1,2), 3)
+}
+main函数中添加
+初始化googletest testing:InitGoogleTest(&argc, argv);
+运行所有的测试   RUN_ALL_TESTS();
+
+gtest 提供了 8 个ASSERT_*断言，分别是ASSERT_TRUE()、ASSERT_FALSE()、ASSERT_EQ()、ASSERT_NE()、ASSERT_LT()、ASSERT_LE()、ASSERT_GT()和ASSERT_GE().
+          TRUE    参数为ture
+          FALSE   参数为false
+          EQ      两个参数数值相等
+          NE      两个参数数值不等
+          LT      两个参数数值小于    less than
+          LE      两个参数数值小于等于less equal
+          GT      两个参数数值大于    greater than
+          GE      两个参数数值大于等于greater equel
+          
+          STREQ     字符串相等
+          STRNE     字符串不相等
+          STRCASEEQ 忽略大小写相等
+          STRCASENQ 忽略大小写不相等
+
+EXPECT_*的断言同样也有 8 个，分别是ASSERT_TRUE()、ASSERT_FALSE()、EXPECT_EQ()、EXPECT_NE()、EXPECT_LT()、EXPECT_LE()、EXPECT_GT()和EXPECT_GE().
+
+事件机制  必须使用TEST_F(测试类名, 任意)
+在TEST_F可以直接使用和修改测试类中的变量的值
+实现一个类继承testing::Test  
+    1. 在初始化测试类之前执行的静态函数 static void SetUpTestCase()
+    2. 在析构测试类之后执行的静态函数  static void TearDownTestCase()
+        注意静态函数只执行一次,不管TEST_F写了多少个
+    3. 在初始化类之后且在执行TEST_F之前的  重构函数 void SetUp()
+    4. 在执行TEST_F之后且在析构测试类之前的  重构函数  void TearDown()
+ 
+全局事件机制
+实现一个类继承testing::Environment
+    重写SetUp和TearDown() 实现执行程序开始和结束时各执行一次
+    main函数中实例化全部类     
+        testing::Environment* env = new GlobalTest();
+        testing::AddGlobalTestEnvironment(env);
+    
+ASSERT_DEATH(参数1，参数2)，程序挂了并且错误信息和参数2匹配，此时认为测试通过。如果参数2为空字符串，则只需要看程序挂没挂即可
+  
+
