@@ -40,5 +40,6 @@ EXPECT_*的断言同样也有 8 个，分别是ASSERT_TRUE()、ASSERT_FALSE()、
         testing::AddGlobalTestEnvironment(env);
     
 ASSERT_DEATH(参数1，参数2)，参数1执行的函数挂了并且错误信息和参数2匹配，此时认为测试通过。如果参数2为空字符串，则只需要看程序挂没挂即可
+  例如 参数一是 1/0
   
 
