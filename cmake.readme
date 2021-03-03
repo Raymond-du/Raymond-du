@@ -1,9 +1,27 @@
 cmake 使用教程
+
+生成可执行文件
+
 1. 指定版本 			cmake_minimum_required(VERSION 2.8)
 2. 指定项目名称 		project(program)
 3. 打开cmake输出信息	set(CMAKE_VERBOSE_MAKEFILE on)
 4. 自动扫描源文件		aux_source_directory(./src DIR_ROOT_SRCS)
+   可以逐一添加文件   set(DIR_ROOT_SRCS ./a.cpp ./b.cpp)
 5. 头文件目录加载		INCLUDE_DIRECTORIES(./include)
 6. 库目录加载			LINK_DIRECTORIES(./lib)
 7. 生成执行文件 		add_executable(program ${DIR_ROOT_SRCS})
 8. 链接静态库			target_link_libraries(program libgtest.a libgtest_main.a)
+
+生成动态链接库
+1. 指定版本 			cmake_minimum_required(VERSION 2.8)
+2. 指定项目名称 		project(program)
+3. 打开cmake输出信息	set(CMAKE_VERBOSE_MAKEFILE on)
+4. 自动扫描源文件		aux_source_directory(./src DIR_ROOT_SRCS)
+   可以逐一添加文件   set(DIR_ROOT_SRCS ./a.cpp ./b.cpp)
+5. 头文件目录加载		INCLUDE_DIRECTORIES(./include)
+6. 库目录加载			LINK_DIRECTORIES(./lib)
+7. 输出文件位置   set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ./dpd)
+8. 生成动态连接库  add_library(serverAgent SHARED ${DIR_ROOT_SRCS})
+
+
+
