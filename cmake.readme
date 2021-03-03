@@ -23,5 +23,13 @@ cmake 使用教程
 7. 输出文件位置   set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ./dpd)
 8. 生成动态连接库  add_library(serverAgent SHARED ${DIR_ROOT_SRCS})
 
+cmake函数
+   add_subdirectory(./src ./bin)  执行src下的cmakelists.txt   生成的目标文件放到bin目录下
+   subdirs                        同上批量执行目录下cmakelists.txt
 
-
+系统默认提供的宏定义
+   编译的当前目录          PROJECT_BINARY_DIR   可以使用项目名替代PROJECT
+   源文件路径            PROJECT_SOURCE_DIR
+   输出路径              EXECUTABLE_OUTPUT_PATH
+   共享库输出目录        LIBRARY_OUTPUT_PATH
+   
