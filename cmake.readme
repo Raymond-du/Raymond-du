@@ -33,4 +33,10 @@ cmake函数
    源文件路径            PROJECT_SOURCE_DIR
    输出路径              EXECUTABLE_OUTPUT_PATH
    共享库输出目录        LIBRARY_OUTPUT_PATH
+
+使用CMake预处理
+option (IGNORE_WARN "ignore warn, only print error msg" OFF)
+if (IGNORE_WARN)
+        add_definitions(-w)
+endif (IGNORE_WARN)
    
