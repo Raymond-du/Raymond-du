@@ -25,6 +25,7 @@ cmake 使用教程
 
 cmake函数
    add_subdirectory(./src ./bin)  执行src下的cmakelists.txt   生成的目标文件放到bin目录下
+   add_definitions(-w)            忽略警告
    subdirs                        同上批量执行目录下cmakelists.txt
 
 系统默认提供的宏定义
