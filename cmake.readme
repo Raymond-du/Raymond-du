@@ -29,6 +29,7 @@ cmake函数
    subdirs                        同上批量执行目录下cmakelists.txt
 
 系统默认提供的宏定义
+   编译器工具             CMAKE_CXX_COMPILER
    编译的当前目录          PROJECT_BINARY_DIR   可以使用项目名替代PROJECT
    源文件路径            PROJECT_SOURCE_DIR
    输出路径              EXECUTABLE_OUTPUT_PATH
