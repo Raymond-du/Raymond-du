@@ -41,3 +41,4 @@ if (IGNORE_WARN)
         add_definitions(-w)
 endif (IGNORE_WARN)
    
+add_definitions(-DX64) 可以解决64位系统下指针转int错误  注意D需要大写
